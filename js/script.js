@@ -147,11 +147,59 @@
     });
   }
 
+  function toggleTheme(isDark) {
+    document.documentElement.classList.toggle("dark", isDark);
+    var buttons = {
+      light: document.getElementById("light-theme-button"),
+      dark: document.getElementById("dark-theme-button"),
+      system: document.getElementById("system-theme-button")
+    };
+    var active = localStorage.getItem("theme") || "system";
+    Object.keys(buttons).forEach(function (key) {
+      if (buttons[key]) {
+        buttons[key].setAttribute("aria-pressed", String(key === active));
+      }
+    });
+  }
+
+  function initThemeToggle() {
+    var lightBtn = document.getElementById("light-theme-button");
+    var darkBtn = document.getElementById("dark-theme-button");
+    var systemBtn = document.getElementById("system-theme-button");
+
+    if (!lightBtn || !darkBtn || !systemBtn) return;
+
+    // Reflect whatever the inline pre-paint script in <head> already decided.
+    toggleTheme(document.documentElement.classList.contains("dark"));
+
+    lightBtn.addEventListener("click", function () {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    darkBtn.addEventListener("click", function () {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    systemBtn.addEventListener("click", function () {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
+      if ((localStorage.getItem("theme") || "system") === "system") {
+        toggleTheme(event.matches);
+      }
+    });
+  }
+
   function init() {
     initSidebarToggle();
     initSidebarDismissal();
     initScrollSpy();
     initCodeCopyButtons();
+    initThemeToggle();
   }
 
   document.addEventListener("DOMContentLoaded", init);
