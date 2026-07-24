@@ -19,12 +19,13 @@ Plain HTML/CSS/JS — no build step, no npm, no framework. Open `index.html` or 
 
 Design tokens (zinc grayscale, amber link accents, IBM Plex Sans/Inter/Cascadia Code fonts, dark mode) are ported from `iamfran.com` (the `realm-2025` project) — not from the `gfx-style-guide`/GreenFlux brand, which is a separate (work) design system. Fonts are loaded from Google Fonts rather than the `@fontsource` npm packages the real site uses, since this template has no build step; swap to self-hosted files later if you want to drop the Google Fonts request.
 
-Dark mode is handled the same way as the real site: a pre-paint inline script in `index.html`'s `<head>` reads `localStorage.theme` (or falls back to `prefers-color-scheme`) and toggles a `.dark` class on `<html>` before CSS loads, avoiding a flash of the wrong theme. The light/dark/system toggle buttons live in the footer.
+Dark mode is handled the same way as the real site: a pre-paint inline script in each page's `<head>` reads `localStorage.theme` (or falls back to `prefers-color-scheme`) and toggles a `.dark` class on `<html>` before CSS loads, avoiding a flash of the wrong theme. The light/dark/system toggle buttons live in the footer.
 
 ## Structure
 
 ```
-index.html      — page content (nav, sidebar, doc sections, TOC panels, footer)
-css/style.css   — design tokens (from iamfran.com) + docs layout
+index.html      — home page (hero, feature cards, CTA card, topnav, footer)
+docs.html       — docs page (sidebar, content sections, TOC panels, topnav, footer)
+css/style.css   — design tokens (from iamfran.com) + layout for both pages
 js/script.js    — scrollspy, mobile sidebar toggle, code-block copy buttons, theme toggle
 ```
