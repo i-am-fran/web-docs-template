@@ -18,6 +18,8 @@
   }
 
   function initSidebarToggle() {
+    if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+
     sidebarToggle.addEventListener("click", function () {
       var isOpen = sidebar.classList.contains("is-open");
       if (isOpen) {
@@ -29,6 +31,8 @@
   }
 
   function initSidebarDismissal() {
+    if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+
     sidebarOverlay.addEventListener("click", closeSidebar);
 
     document.addEventListener("keydown", function (event) {
