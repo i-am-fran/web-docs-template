@@ -1,18 +1,19 @@
 This is a template for the documentation website of my projects on GitHub.
 
-It's a simple one page website, with a sidebar / TOC on the left and content on right.
+It's a two-page site: a simple home page (`index.html`) and a one-page docs layout (`docs.html`) with a sidebar / TOC on the left and content on the right.
 
 It follows my styling, same as my website.
 
-Plain HTML/CSS/JS — no build step, no npm, no framework. Open `index.html` directly in a browser, or serve the folder as static files.
+Plain HTML/CSS/JS — no build step, no npm, no framework. Open `index.html` or `docs.html` directly in a browser, or serve the folder as static files.
 
 ## Using this template
 
-1. **Rename**: update the `<title>` in `index.html`'s `<head>` and the `.topnav__logo` text (and the GitHub link href) to your project's name.
-2. **Replace the example content**: the template ships with three placeholder top-level sections (Getting Started / Guides / API Reference) to show the nesting depth the layout supports. Swap in real content inside `<main class="content">`.
+1. **Rename**: update the `<title>` in both `index.html` and `docs.html`, the `.topnav__logo` text (plain `"Project"`, shared by both pages), the footer copyright text, and the GitHub link href (appears in both pages' topnav and, on `index.html`, in the hero and CTA buttons).
+2. **Home page (`index.html`)**: replace the placeholder hero title/subtitle, the three placeholder feature cards, and the CTA card copy. All of it is plain markup — no wiring required.
+3. **Docs page (`docs.html`)**: ships with three placeholder top-level sections (Getting Started / Guides / API Reference) to show the nesting depth the layout supports. Swap in real content inside `<main class="content">`.
    - Because there's no build step, every heading is hand-wired in **three places** that must stay in sync: the sidebar link (`<a class="sidebar__link" data-heading="...">`), the actual `<h3 id="...">` in the content, and the matching link inside its `.toc__panel`. Renaming or removing a heading means editing all three.
-3. **Add or remove a whole section**: a top-level section is a matched trio — a `.sidebar__group`, a `.doc-section`, and a `.toc__panel` — all keyed by the same slug (e.g. `data-group="guides"`, `id="guides"`, `data-toc-panel="guides"`). Add/remove all three together.
-4. **Callout variants**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/style.css` if you want the other aside styles from iamfran.com.
+4. **Add or remove a whole docs section**: a top-level section is a matched trio — a `.sidebar__group`, a `.doc-section`, and a `.toc__panel` — all keyed by the same slug (e.g. `data-group="guides"`, `id="guides"`, `data-toc-panel="guides"`). Add/remove all three together.
+5. **Callout variants**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/style.css` if you want the other aside styles from iamfran.com.
 
 ## Styling
 
