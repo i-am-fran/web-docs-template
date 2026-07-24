@@ -67,6 +67,7 @@
   --text-xl:   24px;
   --text-2xl:  26px;
   --text-hero: 40px;
+  --text-display: 56px;
 
   /* Spacing */
   --space-1: 4px;
@@ -683,6 +684,147 @@ code {
   .sidebar-overlay[hidden] {
     display: none;
   }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: var(--space-8) var(--space-5) var(--space-7);
+  }
+}
+
+/* ---- Hero ---- */
+.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-9) var(--container-pad) var(--space-8);
+  text-align: center;
+}
+
+.hero__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--color-heading);
+  margin-bottom: var(--space-4);
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--color-body);
+  margin-bottom: var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ---- Buttons ---- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button--primary {
+  background-color: var(--color-heading);
+  color: var(--color-bg);
+  border: 1px solid var(--color-heading);
+}
+
+.button--primary:hover {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+  color: var(--color-bg);
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-heading);
+  border: 1px solid var(--color-border);
+}
+
+.button--secondary:hover {
+  color: var(--color-heading);
+  border-color: var(--color-heading);
+  background-color: var(--color-border);
+}
+
+/* ---- Features grid ---- */
+.features {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--container-pad);
+}
+
+.features h2 {
+  text-align: center;
+}
+
+.features-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.feature {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.feature h3 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.feature p {
+  margin-bottom: 0;
+  font-size: var(--text-sm);
+}
+
+/* ---- CTA band ---- */
+.cta {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad) var(--space-9);
+}
+
+.cta-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  text-align: center;
+}
+
+.cta-card h2 {
+  margin-bottom: var(--space-3);
+}
+
+.cta-card p {
+  max-width: 480px;
+  margin: 0 auto var(--space-5);
 }
 
 @media (prefers-reduced-motion: reduce) {
