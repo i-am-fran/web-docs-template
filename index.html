@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Name — Docs</title>
-  <meta name="description" content="Documentation for Project Name.">
+  <title>Project Name</title>
+  <meta name="description" content="Placeholder tagline for Project Name.">
 
   <!-- Theme detection before any CSS loads — prevents dark mode flash -->
   <script>
@@ -26,149 +26,55 @@
 
   <header class="topnav">
     <div class="topnav__inner">
-      <button class="sidebar-toggle" id="sidebarToggle" type="button"
-              aria-expanded="false" aria-controls="sidebar"
-              aria-label="Toggle navigation menu">
-        <span class="sidebar-toggle__bar"></span>
-        <span class="sidebar-toggle__bar"></span>
-        <span class="sidebar-toggle__bar"></span>
-      </button>
-      <a class="topnav__logo" href="#top">Project<span class="topnav__logo-sep">/</span>docs</a>
-      <nav class="topnav__links" aria-label="External links">
+      <a class="topnav__logo" href="index.html">Project</a>
+      <nav class="topnav__links" aria-label="Page links">
+        <a href="docs.html">Docs</a>
         <a href="https://github.com/you/project" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
 
-  <div class="docs-shell">
-    <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
-
-    <aside class="sidebar" id="sidebar">
-      <nav class="sidebar__nav" aria-label="Documentation sections">
-        <div class="sidebar__group" data-group="getting-started">
-          <span class="sidebar__group-label">Getting Started</span>
-          <ul class="sidebar__list">
-            <li><a class="sidebar__link" href="#installation" data-heading="installation">Installation</a></li>
-            <li><a class="sidebar__link" href="#quick-start" data-heading="quick-start">Quick Start</a></li>
-            <li><a class="sidebar__link" href="#configuration" data-heading="configuration">Configuration</a></li>
-          </ul>
-        </div>
-        <div class="sidebar__group" data-group="guides">
-          <span class="sidebar__group-label">Guides</span>
-          <ul class="sidebar__list">
-            <li><a class="sidebar__link" href="#basic-usage" data-heading="basic-usage">Basic Usage</a></li>
-            <li><a class="sidebar__link" href="#advanced-usage" data-heading="advanced-usage">Advanced Usage</a></li>
-            <li><a class="sidebar__link" href="#troubleshooting" data-heading="troubleshooting">Troubleshooting</a></li>
-          </ul>
-        </div>
-        <div class="sidebar__group" data-group="api-reference">
-          <span class="sidebar__group-label">API Reference</span>
-          <ul class="sidebar__list">
-            <li><a class="sidebar__link" href="#endpoints" data-heading="endpoints">Endpoints</a></li>
-            <li><a class="sidebar__link" href="#parameters" data-heading="parameters">Parameters</a></li>
-            <li><a class="sidebar__link" href="#errors" data-heading="errors">Error Codes</a></li>
-          </ul>
-        </div>
-      </nav>
-    </aside>
-
-    <main class="content" id="main-content" tabindex="-1">
-      <section class="doc-section" id="getting-started" data-section>
-        <h2>Getting Started</h2>
-        <p>Placeholder introduction paragraph for the Getting Started section. Replace this with a short overview of what your project does and who it's for.</p>
-
-        <h3 id="installation">Installation</h3>
-        <p>Placeholder prose describing how to install your project.</p>
-        <div class="code-block">
-          <div class="code-block__header">
-            <span class="code-block__lang">bash</span>
-            <button class="code-block__copy" data-copy-target="install-cmd" type="button">Copy</button>
-          </div>
-          <pre><code id="install-cmd">curl -fsSL https://example.com/install.sh | sh</code></pre>
-        </div>
-
-        <h3 id="quick-start">Quick Start</h3>
-        <p>Placeholder prose walking through the first steps after installation.</p>
-        <aside class="callout callout--tip">
-          <strong>Tip:</strong> Placeholder callout text goes here — use this box for tips, warnings, or important asides.
-        </aside>
-
-        <h3 id="configuration">Configuration</h3>
-        <p>Placeholder prose describing configuration options.</p>
-        <table class="spec-table">
-          <thead>
-            <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>timeout</code></td><td>number</td><td><code>30</code></td><td>Placeholder description.</td></tr>
-            <tr><td><code>retries</code></td><td>number</td><td><code>3</code></td><td>Placeholder description.</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <hr class="divider">
-
-      <section class="doc-section" id="guides" data-section>
-        <h2>Guides</h2>
-
-        <h3 id="basic-usage">Basic Usage</h3>
-        <p>Placeholder prose describing a common usage pattern.</p>
-
-        <h3 id="advanced-usage">Advanced Usage</h3>
-        <p>Placeholder prose describing a more advanced usage pattern.</p>
-
-        <h3 id="troubleshooting">Troubleshooting</h3>
-        <p>Placeholder prose covering common issues and how to resolve them.</p>
-      </section>
-
-      <hr class="divider">
-
-      <section class="doc-section" id="api-reference" data-section>
-        <h2>API Reference</h2>
-
-        <h3 id="endpoints">Endpoints</h3>
-        <p>Placeholder prose listing available endpoints.</p>
-
-        <h3 id="parameters">Parameters</h3>
-        <p>Placeholder prose describing shared parameters.</p>
-
-        <h3 id="errors">Error Codes</h3>
-        <p>Placeholder prose describing error codes and their meanings.</p>
-      </section>
-    </main>
-
-    <aside class="toc" id="toc" aria-label="On this page">
-      <div class="toc__panel" data-toc-panel="getting-started">
-        <span class="toc__title">On this page</span>
-        <ul class="toc__list">
-          <li><a class="toc__link" href="#installation">Installation</a></li>
-          <li><a class="toc__link" href="#quick-start">Quick Start</a></li>
-          <li><a class="toc__link" href="#configuration">Configuration</a></li>
-        </ul>
+  <main id="main-content" tabindex="-1">
+    <section class="hero">
+      <h1 class="hero__title">Project Name</h1>
+      <p class="hero__subtitle">Placeholder one-line tagline describing what this project does and who it's for.</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="docs.html">Read the docs</a>
+        <a class="button button--secondary" href="https://github.com/you/project" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
-      <div class="toc__panel" data-toc-panel="guides" hidden>
-        <span class="toc__title">On this page</span>
-        <ul class="toc__list">
-          <li><a class="toc__link" href="#basic-usage">Basic Usage</a></li>
-          <li><a class="toc__link" href="#advanced-usage">Advanced Usage</a></li>
-          <li><a class="toc__link" href="#troubleshooting">Troubleshooting</a></li>
-        </ul>
-      </div>
-      <div class="toc__panel" data-toc-panel="api-reference" hidden>
-        <span class="toc__title">On this page</span>
-        <ul class="toc__list">
-          <li><a class="toc__link" href="#endpoints">Endpoints</a></li>
-          <li><a class="toc__link" href="#parameters">Parameters</a></li>
-          <li><a class="toc__link" href="#errors">Error Codes</a></li>
-        </ul>
-      </div>
-    </aside>
-  </div>
+    </section>
+
+    <section class="features" aria-labelledby="features-heading">
+      <h2 id="features-heading">What you get</h2>
+      <ul class="features-grid" role="list">
+        <li class="feature">
+          <h3>Feature One</h3>
+          <p>Placeholder description of the first thing worth highlighting.</p>
+        </li>
+        <li class="feature">
+          <h3>Feature Two</h3>
+          <p>Placeholder description of the second thing worth highlighting.</p>
+        </li>
+        <li class="feature">
+          <h3>Feature Three</h3>
+          <p>Placeholder description of the third thing worth highlighting.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-heading">
+      <article class="cta-card">
+        <h2 id="cta-heading">Get started with Project Name</h2>
+        <p>Placeholder closing line pointing people at the docs.</p>
+        <a class="button button--primary" href="docs.html">Read the docs</a>
+      </article>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__copy">
-        &copy; 2026 <span class="soft">/</span> Project<span class="soft">/</span>docs
+        &copy; 2026 <span class="soft">/</span> Project
       </div>
       <div class="theme-toggle">
         <button id="light-theme-button" class="theme-toggle__btn" aria-label="Light theme" aria-pressed="false" type="button">

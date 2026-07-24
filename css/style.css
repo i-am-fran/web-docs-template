@@ -298,12 +298,6 @@ code {
   margin-right: auto;
 }
 
-.topnav__logo-sep {
-  opacity: 0.25;
-  font-weight: 400;
-  margin: 0 2px;
-}
-
 .topnav__links a {
   font-family: var(--font-sans);
   font-weight: 400;
