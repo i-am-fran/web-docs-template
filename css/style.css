@@ -588,7 +588,7 @@ code {
   color: var(--color-muted);
 }
 
-.footer__copy .soft {
+.soft {
   opacity: 0.4;
   margin: 0 2px;
 }
