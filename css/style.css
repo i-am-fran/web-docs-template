@@ -1,0 +1,494 @@
+/* ============================================================
+   DOCS TEMPLATE — CSS
+   Design tokens adapted from the greenflux style guide
+   (see /Users/fran/Documents/Projects/gfx-style-guide/style.css)
+   ============================================================ */
+
+/* ---- Tokens ---- */
+:root {
+  /* Colors */
+  --color-ink:          #111111;
+  --color-ink-2:        #212121;
+  --color-brand:        #234C4C;
+  --color-brand-dark:   #0D3A3A;
+  --color-teal-light:   #9FDDDA;
+  --color-sage:         #D2E1D9;
+  --color-sage-mid:     #CBDBD8;
+  --color-off-white:    #F8FAF9;
+  --color-white:        #FFFFFF;
+
+  /* Typography — "TWK Everett" is the real brand font (licensed, not included);
+     Inter stands in until real font files are added, see README */
+  --font-base: "TWK Everett", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Mono", monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   24px;
+  --text-2xl:  26px;
+  --text-hero: 48px;
+  --text-h1:   60px;
+
+  /* Spacing */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+
+  /* Radii */
+  --radius-pill: 32px;
+  --radius-card: 16px;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-pad: 48px;
+
+  /* Docs shell */
+  --topnav-height: 64px;
+  --sidebar-width: 240px;
+  --toc-width: 220px;
+  --docs-gap: var(--space-6);
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  line-height: 1.4;
+  color: var(--color-ink);
+  background-color: var(--color-white);
+}
+
+/* ---- Typography ---- */
+h2, h3 {
+  font-family: var(--font-base);
+  color: var(--color-ink);
+  scroll-margin-top: calc(var(--topnav-height) + var(--space-5));
+}
+
+h2 {
+  font-size: var(--text-hero);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: var(--space-5);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  font-weight: 450;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  margin: var(--space-7) 0 var(--space-3);
+}
+
+p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-ink-2);
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Inline code ---- */
+code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  background-color: var(--color-sage);
+  color: var(--color-brand);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ---- Divider ---- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-sage);
+  margin: var(--space-8) 0;
+}
+
+/* ---- Spec table ---- */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.spec-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-ink);
+  border-bottom: 2px solid var(--color-sage);
+  padding: var(--space-2) var(--space-3);
+}
+
+.spec-table td {
+  border-bottom: 1px solid var(--color-sage);
+  padding: var(--space-3) var(--space-3);
+  color: var(--color-ink-2);
+  vertical-align: top;
+}
+
+.spec-table td:first-child {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.spec-table td code {
+  font-size: 11px;
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-brand);
+  color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 0 8px 0;
+  z-index: 200;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---- Top nav ---- */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--topnav-height);
+  background-color: var(--color-off-white);
+  border-bottom: 1px solid var(--color-sage);
+}
+
+.topnav__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.topnav__logo {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  margin-right: auto;
+}
+
+.topnav__logo sup {
+  font-size: 9px;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--color-ink-2);
+}
+
+.topnav__links a {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.topnav__links a:hover {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+/* ---- Hamburger toggle (hidden above the mobile breakpoint) ---- */
+.sidebar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  margin: calc(-1 * var(--space-2));
+}
+
+.sidebar-toggle__bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-ink);
+  border-radius: 1px;
+}
+
+/* ---- 3-column docs shell ---- */
+.docs-shell {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr) var(--toc-width);
+  gap: var(--docs-gap);
+  align-items: start;
+}
+
+.sidebar,
+.toc {
+  position: sticky;
+  top: calc(var(--topnav-height) + var(--space-6));
+  max-height: calc(100vh - var(--topnav-height) - var(--space-6) * 2);
+  overflow-y: auto;
+  padding-bottom: var(--space-6);
+}
+
+.content {
+  min-width: 0;
+  padding: var(--space-8) 0 var(--space-9);
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* ---- Sidebar ---- */
+.sidebar__group + .sidebar__group {
+  margin-top: var(--space-6);
+}
+
+.sidebar__group-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+
+.sidebar__list {
+  list-style: none;
+  border-left: 1px solid var(--color-sage);
+}
+
+.sidebar__link {
+  display: block;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  text-decoration: none;
+}
+
+.sidebar__link:hover {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.sidebar__link.is-active {
+  color: var(--color-brand);
+  border-left-color: var(--color-brand);
+  font-weight: 500;
+}
+
+/* ---- Table of contents ---- */
+.toc__title {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-ink-2);
+  margin-bottom: var(--space-3);
+}
+
+.toc__list {
+  list-style: none;
+  border-left: 1px solid var(--color-sage);
+}
+
+.toc__link {
+  display: block;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  text-decoration: none;
+}
+
+.toc__link:hover {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.toc__link.is-active {
+  color: var(--color-brand);
+  border-left-color: var(--color-brand);
+}
+
+/* ---- Code block ---- */
+.code-block {
+  background-color: var(--color-brand-dark);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.code-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.code-block__lang {
+  font-size: var(--text-xs);
+  color: var(--color-teal-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.code-block__copy {
+  font-family: var(--font-base);
+  font-size: var(--text-xs);
+  color: var(--color-off-white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.code-block__copy:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+.code-block code {
+  background: transparent;
+  color: var(--color-off-white);
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+/* ---- Callout ---- */
+.callout {
+  background-color: var(--color-sage);
+  border-left: 3px solid var(--color-brand);
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0 var(--space-6);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-ink-2);
+}
+
+.callout strong {
+  color: var(--color-ink);
+}
+
+/* ---- Breakpoints ---- */
+
+/* Below 1280px: drop the "on this page" column */
+@media (max-width: 1279px) {
+  .docs-shell {
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  }
+
+  .toc {
+    display: none;
+  }
+}
+
+/* Below 860px: sidebar becomes a slide-in drawer, hamburger appears */
+@media (max-width: 859px) {
+  .docs-shell {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-5);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: var(--topnav-height);
+    left: -100%;
+    width: min(80vw, 300px);
+    height: calc(100vh - var(--topnav-height));
+    max-height: none;
+    background-color: var(--color-off-white);
+    border-right: 1px solid var(--color-sage);
+    padding: var(--space-6) var(--space-5);
+    z-index: 90;
+    transition: left 0.2s ease;
+  }
+
+  .sidebar.is-open {
+    left: 0;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: var(--topnav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(17, 17, 17, 0.4);
+    z-index: 80;
+  }
+
+  .sidebar-overlay[hidden] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sidebar {
+    transition: none;
+  }
+}
