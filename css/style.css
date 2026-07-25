@@ -708,6 +708,21 @@ code {
   background-color: var(--color-border);
 }
 
+/* ---- Showcase (product screenshot or demo GIF) ---- */
+.showcase {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad) var(--space-8);
+}
+
+.showcase img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
 /* ---- Features grid ---- */
 .features {
   max-width: var(--container-max);

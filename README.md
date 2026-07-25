@@ -16,6 +16,8 @@ Plain HTML/CSS/JS — no build step, no npm, no framework. Open `index.html` or 
 5. **Callout variants**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/style.css` if you want the other aside styles from iamfran.com.
 6. **Logo (optional)**: drop a square image at `assets/logo.png`, then uncomment the `<img class="topnav__logo-icon">` line inside `.topnav__logo` in both `index.html` and `docs.html`. It renders as a circular crop to the left of the title (`.topnav__logo-icon` in `css/style.css`). Left commented out by default because, unlike a missing favicon, a missing `<img src>` shows a visible broken-image icon.
 7. **Favicon / social preview**: both pages' `<head>` already ship the full set of tags — `theme-color`, Open Graph, Twitter Card, and the six icon `<link>`s (`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` @180×180, `android-chrome-192x192.png`, `android-chrome-512x512.png`). Replace the placeholder files under `assets/` with your own set generated from your logo, and swap the `https://you.github.io/project/...` URLs for your real ones.
+8. **CTA banner (optional)**: the CTA card at the bottom of `index.html` has a commented-out `.cta-card__banner` slot right after the closing card — a small (max 320px), rounded-corner image. Uncomment it and point it at a wide (roughly 2:1) image of your own.
+9. **Showcase (optional)**: a commented-out `.showcase` section sits between the hero and "What you get" on `index.html`, for a full-width product screenshot or demo GIF. Uncomment it and point the `<img>` at your own asset.
 
 ## Styling
 
