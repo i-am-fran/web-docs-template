@@ -18,6 +18,7 @@ Plain HTML/CSS/JS — no build step, no npm, no framework. Open `index.html` or 
 7. **Favicon / social preview**: both pages' `<head>` already ship the full set of tags — `theme-color`, Open Graph, Twitter Card, and the six icon `<link>`s (`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` @180×180, `android-chrome-192x192.png`, `android-chrome-512x512.png`). Replace the placeholder files under `assets/` with your own set generated from your logo, and swap the `https://you.github.io/project/...` URLs for your real ones.
 8. **CTA banner (optional)**: the CTA card at the bottom of `index.html` has a commented-out `.cta-card__banner` slot right after the closing card — a small (max 320px), rounded-corner image. Uncomment it and point it at a wide (roughly 2:1) image of your own.
 9. **Showcase (optional)**: a commented-out `.showcase` section sits between the hero and "What you get" on `index.html`, for a full-width product screenshot or demo GIF. Uncomment it and point the `<img>` at your own asset.
+10. **Doc-section media (optional)**: a commented-out `.doc-section__media` image sits in the "Getting Started" section of `docs.html`, for a screenshot or demo GIF inline with the prose. Uncomment it and point it at your own asset — reuse the class anywhere else in `docs.html` you want the same treatment.
 
 ## Styling
 
