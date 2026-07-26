@@ -1,147 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Name</title>
-  <meta name="description" content="Placeholder tagline for Project Name.">
-  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#18181b" media="(prefers-color-scheme: dark)">
+---
+layout: home
+---
+<section class="hero">
+  <h1 class="hero__title">{{ site.title }}</h1>
+  <p class="hero__subtitle">{{ site.tagline }}</p>
+  <div class="hero__actions">
+    <a class="button button--primary" href="{{ '/docs.html' | relative_url }}">Read the docs</a>
+    <a class="button button--secondary" href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+</section>
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://you.github.io/project/">
-  <meta property="og:title" content="Project Name">
-  <meta property="og:description" content="Placeholder tagline for Project Name.">
-  <meta property="og:image" content="https://you.github.io/project/assets/android-chrome-512x512.png">
-  <meta property="og:image:alt" content="Project logo">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Project Name">
-  <meta name="twitter:description" content="Placeholder tagline for Project Name.">
-  <meta name="twitter:image" content="https://you.github.io/project/assets/android-chrome-512x512.png">
-  <meta name="twitter:image:alt" content="Project logo">
+<!-- Optional showcase: drop a screenshot or demo GIF at assets/showcase.png, then uncomment:
+<section class="showcase">
+  <img src="assets/showcase.png" alt="Describe what the screenshot/demo shows.">
+</section>
+-->
 
-  <!-- Favicon (replace the files under assets/ with your own set) -->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png">
+<section class="features" aria-labelledby="features-heading">
+  <h2 id="features-heading">What you get</h2>
+  <ul class="features-grid" role="list">
+    <li class="feature">
+      <h3>Feature One</h3>
+      <p>Placeholder description of the first thing worth highlighting.</p>
+    </li>
+    <li class="feature">
+      <h3>Feature Two</h3>
+      <p>Placeholder description of the second thing worth highlighting.</p>
+    </li>
+    <li class="feature">
+      <h3>Feature Three</h3>
+      <p>Placeholder description of the third thing worth highlighting.</p>
+    </li>
+  </ul>
+</section>
 
-  <!-- Theme detection before any CSS loads — prevents dark mode flash -->
-  <script>
-    (function () {
-      var t = localStorage.getItem("theme");
-      if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.classList.add("dark");
-      }
-    })();
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=Cascadia+Code:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-
-  <header class="topnav">
-    <div class="topnav__inner">
-      <a class="topnav__logo" href="index.html">
-        <!-- Optional logo: drop a square image at assets/logo.png, then uncomment:
-        <img src="assets/logo.png" alt="" class="topnav__logo-icon"> -->
-        Project
-      </a>
-      <nav class="topnav__links" aria-label="Page links">
-        <a href="docs.html">Docs</a>
-        <span class="soft">/</span>
-        <a href="https://github.com/you/project" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content" tabindex="-1">
-    <section class="hero">
-      <h1 class="hero__title">Project Name</h1>
-      <p class="hero__subtitle">Placeholder one-line tagline describing what this project does and who it's for.</p>
-      <div class="hero__actions">
-        <a class="button button--primary" href="docs.html">Read the docs</a>
-        <a class="button button--secondary" href="https://github.com/you/project" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </section>
-
-    <!-- Optional showcase: drop a screenshot or demo GIF at assets/showcase.png, then uncomment:
-    <section class="showcase">
-      <img src="assets/showcase.png" alt="Describe what the screenshot/demo shows.">
-    </section>
-    -->
-
-    <section class="features" aria-labelledby="features-heading">
-      <h2 id="features-heading">What you get</h2>
-      <ul class="features-grid" role="list">
-        <li class="feature">
-          <h3>Feature One</h3>
-          <p>Placeholder description of the first thing worth highlighting.</p>
-        </li>
-        <li class="feature">
-          <h3>Feature Two</h3>
-          <p>Placeholder description of the second thing worth highlighting.</p>
-        </li>
-        <li class="feature">
-          <h3>Feature Three</h3>
-          <p>Placeholder description of the third thing worth highlighting.</p>
-        </li>
-      </ul>
-    </section>
-
-    <section class="cta" aria-labelledby="cta-heading">
-      <article class="cta-card">
-        <h2 id="cta-heading">Get started with Project Name</h2>
-        <p>Placeholder closing line pointing people at the docs.</p>
-        <a class="button button--primary" href="docs.html">Read the docs</a>
-      </article>
-      <!-- Optional banner: drop a wide image at assets/cta-banner.png, then uncomment:
-      <img src="assets/cta-banner.png" alt="" class="cta-card__banner"> -->
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__copy">
-        &copy; 2026 <span class="soft">/</span> Project <span class="soft">/</span> <a href="https://iamfran.com" target="_blank" rel="noopener noreferrer">iamfran.com</a>
-      </div>
-      <div class="theme-toggle">
-        <button id="light-theme-button" class="theme-toggle__btn" aria-label="Light theme" aria-pressed="false" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
-        <button id="dark-theme-button" class="theme-toggle__btn" aria-label="Dark theme" aria-pressed="false" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-        <button id="system-theme-button" class="theme-toggle__btn" aria-label="System theme" aria-pressed="false" type="button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/script.js" defer></script>
-</body>
-</html>
+<section class="cta" aria-labelledby="cta-heading">
+  <article class="cta-card">
+    <h2 id="cta-heading">Get started with {{ site.title }}</h2>
+    <p>Placeholder closing line pointing people at the docs.</p>
+    <a class="button button--primary" href="{{ '/docs.html' | relative_url }}">Read the docs</a>
+  </article>
+  <!-- Optional banner: drop a wide image at assets/cta-banner.png, then uncomment:
+  <img src="assets/cta-banner.png" alt="" class="cta-card__banner"> -->
+</section>

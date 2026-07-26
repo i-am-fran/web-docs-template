@@ -1,0 +1,41 @@
+# Site-wide values — the placeholders below match the ones the README
+# tells you to replace when you rename this template for a new project.
+title: "Project Name"
+tagline: "Placeholder one-line tagline describing what this project does and who it's for."
+description: "Placeholder tagline for Project Name."
+github_url: "https://github.com/you/project"
+# jekyll-github-metadata (bundled with the github-pages gem) needs to know
+# the repo even though this template doesn't use any site.github.* data —
+# GitHub Pages infers this automatically in production; local builds need
+# it set explicitly since there's no git remote/PAGES_REPO_NWO available.
+repository: "you/project"
+author_url: "https://iamfran.com"
+author_label: "iamfran.com"
+
+# GitHub Pages project-site defaults — update to match your actual deployment
+# target: root/custom-domain sites use baseurl: "".
+url: "https://you.github.io"
+baseurl: "/project"
+
+markdown: kramdown
+kramdown:
+  auto_ids: true
+# Rouge syntax highlighting can't actually be turned off here — Jekyll 3.x's
+# kramdown integration falls back to "rouge" no matter what this is set to
+# (verified locally), so it's not attempted. Since no Rouge theme stylesheet
+# is included, the extra token <span>s it adds render in plain inherited
+# text color anyway — visually identical to the old hand-written markup.
+# See js/script.js's initCodeBlockChrome() for how the resulting
+# .highlighter-rouge markup gets unwrapped into the .code-block chrome.
+
+collections:
+  docs:
+    output: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - TODO.md
+  - vendor
+  - .bundle

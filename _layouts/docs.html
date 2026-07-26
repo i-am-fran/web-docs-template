@@ -1,0 +1,67 @@
+---
+layout: base
+---
+{% assign docs = site.docs | sort: 'order' %}
+<header class="topnav">
+  <div class="topnav__inner">
+    <button class="sidebar-toggle" id="sidebarToggle" type="button"
+            aria-expanded="false" aria-controls="sidebar"
+            aria-label="Toggle navigation menu">
+      <span class="sidebar-toggle__bar"></span>
+      <span class="sidebar-toggle__bar"></span>
+      <span class="sidebar-toggle__bar"></span>
+    </button>
+    <a class="topnav__logo" href="{{ '/' | relative_url }}">
+      <!-- Optional logo: drop a square image at assets/logo.png, then uncomment:
+      <img src="{{ '/assets/logo.png' | relative_url }}" alt="" class="topnav__logo-icon"> -->
+      {{ site.title }}
+    </a>
+    <nav class="topnav__links" aria-label="Page links">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="soft">/</span>
+      <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="docs-shell">
+  <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar__nav" aria-label="Documentation sections">
+      {% for doc in docs %}
+      <div class="sidebar__group" data-group="{{ doc.slug }}">
+        <span class="sidebar__group-label">{{ doc.title }}</span>
+        <ul class="sidebar__list">
+          {% for heading in doc.headings %}
+          <li><a class="sidebar__link" href="#{{ heading.id }}" data-heading="{{ heading.id }}">{{ heading.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  <main class="content" id="main-content" tabindex="-1">
+    {% for doc in docs %}
+    <section class="doc-section" id="{{ doc.slug }}" data-section>
+      <h2>{{ doc.title }}</h2>
+      {{ doc.content }}
+    </section>
+    {% unless forloop.last %}<hr class="divider">{% endunless %}
+    {% endfor %}
+  </main>
+
+  <aside class="toc" id="toc" aria-label="On this page">
+    {% for doc in docs %}
+    <div class="toc__panel" data-toc-panel="{{ doc.slug }}"{% unless forloop.first %} hidden{% endunless %}>
+      <span class="toc__title">On this page</span>
+      <ul class="toc__list">
+        {% for heading in doc.headings %}
+        <li><a class="toc__link" href="#{{ heading.id }}">{{ heading.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </aside>
+</div>

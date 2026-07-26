@@ -1,0 +1,48 @@
+{% assign page_title = site.title %}
+{% if page.title %}{% assign page_title = site.title | append: " — " | append: page.title %}{% endif %}
+{% assign page_description = page.description | default: site.description %}
+{% assign page_image = "/assets/android-chrome-512x512.png" | absolute_url %}
+{% assign page_url = page.url | absolute_url %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_description }}">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#18181b" media="(prefers-color-scheme: dark)">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:image" content="{{ page_image }}">
+<meta property="og:image:alt" content="{{ site.title }} logo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_description }}">
+<meta name="twitter:image" content="{{ page_image }}">
+<meta name="twitter:image:alt" content="{{ site.title }} logo">
+
+<!-- Favicon (replace the files under assets/ with your own set) -->
+<link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/android-chrome-192x192.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/android-chrome-512x512.png' | relative_url }}">
+
+<!-- Theme detection before any CSS loads — prevents dark mode flash -->
+<script>
+  (function () {
+    var t = localStorage.getItem("theme");
+    if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add("dark");
+    }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=Cascadia+Code:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">

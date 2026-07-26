@@ -124,6 +124,57 @@
     });
   }
 
+  // Markdown fenced code blocks render as Rouge-highlighted markup
+  // (<div class="language-x highlighter-rouge"><div class="highlight">
+  // <pre class="highlight"><code>...</code></pre></div></div>) with no
+  // copy-button chrome. This unwraps that down to a plain <pre><code>
+  // inside the same .code-block markup that used to be hand-written
+  // directly in HTML, so authors can just write a fenced code block and
+  // get the copy button for free. No Rouge theme stylesheet is included,
+  // so the token <span>s Rouge adds render in plain inherited text color —
+  // visually identical to the old hand-written markup.
+  function initCodeBlockChrome() {
+    var rougeBlocks = document.querySelectorAll(".doc-section div.highlighter-rouge");
+    var counter = 0;
+
+    rougeBlocks.forEach(function (rougeDiv) {
+      var pre = rougeDiv.querySelector("pre");
+      var codeEl = pre && pre.querySelector("code");
+      if (!pre || !codeEl) return;
+
+      counter += 1;
+      var id = "code-block-" + counter;
+      codeEl.id = id;
+      pre.className = "";
+
+      var langMatch = /language-(\S+)/.exec(rougeDiv.className);
+      var lang = langMatch && langMatch[1] !== "plaintext" ? langMatch[1] : "";
+
+      var wrapper = document.createElement("div");
+      wrapper.className = "code-block";
+
+      var header = document.createElement("div");
+      header.className = "code-block__header";
+
+      var langLabel = document.createElement("span");
+      langLabel.className = "code-block__lang";
+      langLabel.textContent = lang;
+
+      var copyButton = document.createElement("button");
+      copyButton.className = "code-block__copy";
+      copyButton.type = "button";
+      copyButton.setAttribute("data-copy-target", id);
+      copyButton.textContent = "Copy";
+
+      header.appendChild(langLabel);
+      header.appendChild(copyButton);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+
+      rougeDiv.parentNode.replaceChild(wrapper, rougeDiv);
+    });
+  }
+
   function initCodeCopyButtons() {
     var buttons = document.querySelectorAll(".code-block__copy");
     buttons.forEach(function (button) {
@@ -202,6 +253,7 @@
     initSidebarToggle();
     initSidebarDismissal();
     initScrollSpy();
+    initCodeBlockChrome();
     initCodeCopyButtons();
     initThemeToggle();
   }
