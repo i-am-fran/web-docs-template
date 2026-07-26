@@ -18,7 +18,7 @@ Built with Jekyll, which GitHub Pages runs for you automatically on every push �
    - **Callouts**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/tailwind-input.css`. Write them as raw HTML with `markdown="1"` so kramdown still processes Markdown inside, and `not-prose` so the Tailwind Typography plugin (which styles the rest of the doc content) doesn't add its own paragraph spacing inside the box: `<aside class="callout callout--tip not-prose" markdown="1">**Tip:** ...</aside>`.
    - **Tables**: plain Markdown tables — no class needed. The Tailwind Typography plugin (`.prose`, applied to all doc content) styles them automatically.
    - **Images with a class** (e.g. the doc-section media slot below): `![alt](assets/demo.gif){: .doc-section__media}`.
-6. **Logo (optional)**: drop a square image at `assets/logo.png`, then uncomment the `<img class="topnav__logo-icon">` line inside `.topnav__logo` in both `_layouts/home.html` and `_layouts/docs.html`. It renders as a circular crop to the left of the title (`.topnav__logo-icon` in `css/tailwind-input.css`). Left commented out by default because, unlike a missing favicon, a missing `<img src>` shows a visible broken-image icon.
+6. **Logo (optional)**: drop a square image at `assets/logo.png`, then uncomment the `<img class="topnav__logo-icon">` line inside `.topnav__logo` in both `_layouts/home.html` and `_layouts/docs.html`. It renders as a circular crop to the left of the title (`.topnav__logo-icon` in `assets/css/style.css`). Left commented out by default because, unlike a missing favicon, a missing `<img src>` shows a visible broken-image icon.
 7. **Favicon / social preview**: both layouts' `<head>` (via `_includes/head.html`) already ship the full set of tags — `theme-color`, Open Graph, Twitter Card, and the six icon `<link>`s (`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` @180×180, `android-chrome-192x192.png`, `android-chrome-512x512.png`), all built from `_config.yml`. Replace the placeholder files under `assets/` with your own set generated from your logo, and set `url`/`baseurl` in `_config.yml` to your real GitHub Pages URL — a project page at `you.github.io/project/` needs `baseurl: "/project"`; a user/org root page or custom domain needs `baseurl: ""`.
 8. **CTA banner (optional)**: the CTA card at the bottom of `index.html` has a commented-out `.cta-card__banner` slot right after the closing card — a small (max 320px), rounded-corner image. Uncomment it and point it at a wide (roughly 2:1) image of your own.
 9. **Showcase (optional)**: a commented-out `.showcase` section sits between the hero and "What you get" on `index.html`, for a full-width product screenshot or demo GIF. Uncomment it and point the `<img>` at your own asset.
@@ -37,7 +37,7 @@ This pins Jekyll/kramdown/Rouge to the same versions GitHub Pages builds with (s
 
 ## Styling
 
-Built with [Tailwind CSS v4](https://tailwindcss.com) via the **standalone CLI** — a self-contained downloaded binary, no Node/npm involved. `css/tailwind-input.css` is the real source; `css/style.css` is generated from it and committed (same spirit as `_site/` in reverse — here the *build output* is what ships, since GitHub Pages has no way to run a Tailwind build for you). **Never hand-edit `css/style.css` directly** — edit `css/tailwind-input.css` and rebuild.
+Built with [Tailwind CSS v4](https://tailwindcss.com) via the **standalone CLI** — a self-contained downloaded binary, no Node/npm involved. `css/tailwind-input.css` is the real source; `assets/css/style.css` is generated from it and committed (same spirit as `_site/` in reverse — here the *build output* is what ships, since GitHub Pages has no way to run a Tailwind build for you). It lives under `assets/` rather than a top-level `css/` folder specifically so a `remote_theme` consumer picks it up automatically — see [Using this as a remote theme](#using-this-as-a-remote-theme). **Never hand-edit `assets/css/style.css` directly** — edit `css/tailwind-input.css` and rebuild.
 
 One-time setup (macOS Apple Silicon shown; see the [releases page](https://github.com/tailwindlabs/tailwindcss/releases) for other platforms — `tailwindcss-macos-x64`, `tailwindcss-linux-x64`, `tailwindcss-linux-arm64`, `tailwindcss-windows-x64.exe`):
 
@@ -50,7 +50,7 @@ mv tailwindcss-macos-arm64 tailwindcss
 Rebuild after any change to `css/tailwind-input.css`:
 
 ```bash
-./tailwindcss -i css/tailwind-input.css -o css/style.css
+./tailwindcss -i css/tailwind-input.css -o assets/css/style.css
 ```
 
 Design tokens (zinc grayscale, amber link accents, IBM Plex Sans/Inter/Cascadia Code fonts, dark mode) are ported from `iamfran.com` (the `realm-2025` project) — not from the `gfx-style-guide`/GreenFlux brand, which is a separate (work) design system. The zinc/amber/teal/orange/stone colors are Tailwind's own default palette (used directly, not overridden) rather than hand-pinned hex values. Fonts are loaded from Google Fonts rather than the `@fontsource` npm packages the real site uses, since this template avoids Node tooling; swap to self-hosted files later if you want to drop the Google Fonts request.
@@ -59,7 +59,40 @@ Docs content (`_docs/*.md`) has no hand-placed classes, so it's styled via the [
 
 Dark mode is handled the same way as the real site: a pre-paint inline script in `_includes/head.html` reads `localStorage.theme` (or falls back to `prefers-color-scheme`) and toggles a `.dark` class on `<html>` before CSS loads, avoiding a flash of the wrong theme. In Tailwind terms this is a `@custom-variant dark (&:where(.dark, .dark *));` declaration in `css/tailwind-input.css`. The light/dark/system toggle buttons live in the footer.
 
-Code blocks: GitHub Pages' Jekyll always runs fenced code through Rouge (there's no config that turns this off — verified locally), which wraps each block in `<div class="language-x highlighter-rouge">...`. `js/script.js`'s `initCodeBlockChrome()` unwraps that down to a plain `<pre><code>` inside the existing `.code-block` chrome at load time. Since no Rouge theme stylesheet is included, the token `<span>`s Rouge adds render in plain inherited text color — visually identical to the old hand-written markup. Adding a Rouge theme for real syntax coloring is a deliberate follow-up, not something this template does today.
+Code blocks: GitHub Pages' Jekyll always runs fenced code through Rouge (there's no config that turns this off — verified locally), which wraps each block in `<div class="language-x highlighter-rouge">...`. `assets/js/script.js`'s `initCodeBlockChrome()` unwraps that down to a plain `<pre><code>` inside the existing `.code-block` chrome at load time. Since no Rouge theme stylesheet is included, the token `<span>`s Rouge adds render in plain inherited text color — visually identical to the old hand-written markup. Adding a Rouge theme for real syntax coloring is a deliberate follow-up, not something this template does today.
+
+## Using this as a remote theme
+
+Rather than copy-pasting this repo into another project's `docs/` folder (the old way — drifts out of sync as this template evolves), a consuming repo can reference it directly via Jekyll's [`remote_theme`](https://github.com/benbalter/jekyll-remote-theme), which GitHub Pages supports natively. Only `_layouts/`, `_includes/`, `_sass/`, and `assets/` are shared this way — a consumer still needs its own `index.html`, `docs.html`, and `_docs/*.md` content, following the exact same structure as this repo's own (use them as the reference).
+
+A consuming repo's `_config.yml` needs:
+
+```yaml
+remote_theme: i-am-fran/web-docs-template
+plugins:
+  - jekyll-remote-theme
+
+collections:
+  docs:
+    output: false
+
+title: "Your Project"
+tagline: "..."
+description: "..."
+github_url: "https://github.com/you/your-project"
+author_url: "https://iamfran.com"
+author_label: "iamfran.com"
+repository: "you/your-project"
+url: "https://you.github.io"
+baseurl: "/your-project"
+markdown: kramdown
+```
+
+The `plugins` and `collections` entries are **not optional, and not inherited from the theme** — `jekyll-remote-theme` is bundled with the `github-pages` gem but isn't one of the handful of plugins GitHub Pages auto-enables, so it needs to be listed explicitly. Collection registration is site-level config a theme can't supply on a consumer's behalf either, even though the layout that loops over `site.docs` lives entirely in this repo.
+
+A consumer's own file always overrides a theme file at the same path (e.g. a real `assets/favicon.ico` in the consumer repo wins over this template's placeholder). Real per-project assets (logos, favicons, screenshots) belong in the consumer's own `assets/` folder, alongside the shared `assets/css/style.css` and `assets/js/script.js` that come from the theme.
+
+**Updates aren't always instant**: GitHub Pages doesn't reliably re-fetch a theme on a consumer's very next build right after this repo changes (a known `jekyll-remote-theme` limitation). If a consumer's site doesn't reflect a recent template update, push an empty/nudge commit to that consumer repo to force a fresh build.
 
 ## Structure
 
@@ -74,7 +107,9 @@ _docs/               — one Markdown file per top-level docs section (title/slu
 index.html            — home page content (hero, feature cards, CTA) — front matter only, layout: home
 docs.html             — empty; front matter only, layout: docs — all content comes from _docs/
 css/tailwind-input.css — Tailwind source (edit this one) — theme, dark-mode variant, @layer components, prose overrides
-css/style.css          — generated from tailwind-input.css — never hand-edit
-js/script.js           — scrollspy, mobile sidebar toggle, code-block chrome + copy buttons, theme toggle
+assets/css/style.css   — generated from tailwind-input.css — never hand-edit
+assets/js/script.js    — scrollspy, mobile sidebar toggle, code-block chrome + copy buttons, theme toggle
 Gemfile                — pins the github-pages gem for local preview parity with GitHub's build
 ```
+
+`_layouts/`, `_includes/`, and `assets/` are the parts a `remote_theme` consumer inherits automatically — see [Using this as a remote theme](#using-this-as-a-remote-theme). `css/tailwind-input.css` (the Tailwind source, not the compiled output) is intentionally outside `assets/` and excluded from the Jekyll build (`_config.yml`), since it's a build input, not something either this site or a consumer should serve.
