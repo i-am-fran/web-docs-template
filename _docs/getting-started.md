@@ -29,7 +29,7 @@ curl -fsSL https://example.com/install.sh | sh
 
 Placeholder prose walking through the first steps after installation.
 
-<aside class="callout callout--tip" markdown="1">
+<aside class="callout callout--tip not-prose" markdown="1">
 **Tip:** Placeholder callout text goes here — use this box for tips, warnings, or important asides.
 </aside>
 
@@ -41,4 +41,3 @@ Placeholder prose describing configuration options.
 | --- | --- | --- | --- |
 | `timeout` | number | `30` | Placeholder description. |
 | `retries` | number | `3` | Placeholder description. |
-{: .spec-table}

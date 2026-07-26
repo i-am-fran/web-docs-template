@@ -46,7 +46,9 @@ layout: base
     {% for doc in docs %}
     <section class="doc-section" id="{{ doc.slug }}" data-section>
       <h2>{{ doc.title }}</h2>
-      {{ doc.content }}
+      <div class="prose dark:prose-invert max-w-none">
+        {{ doc.content }}
+      </div>
     </section>
     {% unless forloop.last %}<hr class="divider">{% endunless %}
     {% endfor %}

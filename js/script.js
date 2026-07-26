@@ -151,7 +151,7 @@
       var lang = langMatch && langMatch[1] !== "plaintext" ? langMatch[1] : "";
 
       var wrapper = document.createElement("div");
-      wrapper.className = "code-block";
+      wrapper.className = "code-block not-prose";
 
       var header = document.createElement("div");
       header.className = "code-block__header";

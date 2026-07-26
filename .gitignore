@@ -4,3 +4,7 @@ _site/
 .bundle/
 vendor/bundle/
 .DS_Store
+
+# Downloaded standalone Tailwind CLI binary — a build tool, not source.
+# See README for the pinned version/download command.
+/tailwindcss

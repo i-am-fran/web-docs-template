@@ -1,0 +1,429 @@
+/* ============================================================
+   DOCS TEMPLATE — Tailwind source
+   This is the file to edit. css/style.css is generated from this
+   one — see README "Styling" section for the rebuild command.
+   Design tokens ported from iamfran.com (realm-2025): zinc
+   grayscale, amber link accents, IBM Plex Sans + Inter, italic
+   Cascadia Code, dark mode via .dark on <html>.
+   ============================================================ */
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Cascadia Code", "SF Mono", "Fira Mono", monospace;
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply font-sans text-base leading-[1.4] text-black/65 dark:text-white/75 bg-zinc-50 dark:bg-zinc-900
+         transition-colors duration-200 antialiased;
+}
+
+/* ---- Typography (hand-written pages: index.html hero/features/cta chrome) ---- */
+h2, h3 {
+  @apply font-sans font-semibold text-black dark:text-white;
+  scroll-margin-top: calc(4rem + 1.5rem);
+}
+
+h2 {
+  @apply text-4xl leading-[1.15] tracking-tight mb-6;
+}
+
+h3 {
+  @apply text-2xl leading-tight mt-12 mb-3;
+}
+
+p {
+  @apply font-body text-base leading-relaxed text-black/65 dark:text-white/75 mb-4;
+}
+
+a {
+  @apply text-zinc-700 dark:text-zinc-200 font-body font-medium underline decoration-amber-400 dark:decoration-amber-600
+         underline-offset-2 transition-colors
+         hover:text-zinc-950 dark:hover:text-zinc-50 hover:decoration-amber-600 dark:hover:decoration-amber-300;
+}
+
+/* ---- Inline code ---- */
+code {
+  @apply font-mono italic text-[0.875em] bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200
+         px-1.5 py-0.5 rounded-sm ring-1 ring-black/6 dark:ring-white/8;
+}
+
+/* ---- Divider (centered bullet dots, matching realm-2025's hr.divider) ---- */
+.divider {
+  @apply border-0 bg-none text-center py-12 overflow-visible;
+}
+
+.divider::before {
+  content: "\2022\2022\2022";
+  @apply inline-block tracking-[1rem] text-sm text-zinc-600 dark:text-zinc-400 opacity-40;
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  @apply absolute -left-[9999px] top-0 bg-black dark:bg-white text-zinc-50 dark:text-zinc-900
+         px-4 py-2 rounded-br-lg z-[200] no-underline;
+}
+
+.skip-link:focus {
+  @apply left-0;
+}
+
+/* ---- Top nav ---- */
+.topnav {
+  @apply sticky top-0 z-[100] h-16 bg-zinc-50/75 dark:bg-zinc-900/60 backdrop-blur-md
+         border-b border-zinc-200 dark:border-zinc-800;
+}
+
+.topnav__inner {
+  @apply max-w-[1200px] mx-auto px-12 h-full flex items-center gap-4;
+}
+
+.topnav__logo {
+  @apply inline-flex items-center gap-2 font-sans text-lg font-semibold text-black dark:text-white
+         no-underline mr-auto;
+}
+
+.topnav__logo-icon {
+  @apply w-7 h-7 shrink-0 rounded-full object-cover;
+}
+
+.topnav__links a {
+  @apply font-sans font-normal text-sm text-zinc-600 dark:text-zinc-400 no-underline
+         hover:text-black dark:hover:text-white hover:no-underline;
+}
+
+/* ---- Hamburger toggle (hidden above the mobile breakpoint) ---- */
+.sidebar-toggle {
+  @apply hidden max-[859px]:flex flex-col justify-center gap-1 w-8 h-8 bg-transparent border-0 cursor-pointer p-2 -m-2;
+}
+
+.sidebar-toggle__bar {
+  @apply w-full h-0.5 bg-black dark:bg-white rounded-full;
+}
+
+/* ---- 3-column docs shell ---- */
+.docs-shell {
+  @apply max-w-[1200px] mx-auto px-12 max-[859px]:px-6 grid gap-8 items-start
+         grid-cols-[240px_minmax(0,1fr)_220px] max-xl:grid-cols-[240px_minmax(0,1fr)] max-[859px]:grid-cols-1;
+}
+
+.sidebar,
+.toc {
+  @apply sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto pb-8;
+}
+
+.toc {
+  @apply max-xl:hidden;
+}
+
+.content {
+  @apply min-w-0 pt-16 pb-24;
+}
+
+.sidebar-overlay {
+  @apply hidden max-[859px]:block max-[859px]:fixed max-[859px]:top-16 max-[859px]:inset-x-0
+         max-[859px]:bottom-0 max-[859px]:bg-black/40 max-[859px]:z-[80];
+}
+
+.sidebar-overlay[hidden] {
+  @apply max-[859px]:hidden;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  @apply max-[859px]:fixed max-[859px]:top-16 max-[859px]:-left-full max-[859px]:w-[min(80vw,300px)]
+         max-[859px]:h-[calc(100vh-4rem)] max-[859px]:max-h-none max-[859px]:bg-zinc-50 max-[859px]:dark:bg-zinc-900
+         max-[859px]:border-r max-[859px]:border-zinc-200 max-[859px]:dark:border-zinc-800
+         max-[859px]:px-6 max-[859px]:py-8 max-[859px]:z-[90] max-[859px]:transition-[left] max-[859px]:duration-200;
+}
+
+.sidebar.is-open {
+  @apply max-[859px]:left-0;
+}
+
+.sidebar__group + .sidebar__group {
+  @apply mt-8;
+}
+
+.sidebar__group-label {
+  @apply block font-sans text-sm font-semibold text-black dark:text-white mb-2;
+}
+
+.sidebar__list {
+  @apply list-none border-l border-zinc-200 dark:border-zinc-800;
+}
+
+.sidebar__link {
+  @apply block font-sans font-normal py-1 px-3 -ml-px text-sm text-zinc-600 dark:text-zinc-400
+         border-l-2 border-transparent no-underline hover:text-black dark:hover:text-white hover:no-underline;
+}
+
+.sidebar__link.is-active {
+  @apply text-black dark:text-white border-amber-400 dark:border-amber-600 font-medium;
+}
+
+/* ---- Table of contents ---- */
+.toc__title {
+  @apply block font-sans text-xs font-medium uppercase tracking-wide text-zinc-600 dark:text-zinc-400 mb-3;
+}
+
+.toc__list {
+  @apply list-none border-l border-zinc-200 dark:border-zinc-800;
+}
+
+.toc__link {
+  @apply block font-sans py-1 px-3 -ml-px text-xs text-zinc-600 dark:text-zinc-400
+         border-l-2 border-transparent no-underline hover:text-black dark:hover:text-white hover:no-underline;
+}
+
+.toc__link.is-active {
+  @apply text-black dark:text-white border-amber-400 dark:border-amber-600;
+}
+
+/* ---- Code block (chrome added by js/script.js's initCodeBlockChrome) ---- */
+.code-block {
+  @apply bg-zinc-900 dark:bg-zinc-950 rounded-xl overflow-hidden my-4 mb-8;
+}
+
+.code-block__header {
+  @apply flex items-center justify-between px-4 py-2 bg-white/5;
+}
+
+.code-block__lang {
+  @apply font-sans text-xs text-amber-400 uppercase tracking-wide;
+}
+
+.code-block__copy {
+  @apply font-sans text-xs text-zinc-100 bg-transparent border border-white/25 rounded-full px-2.5 py-0.5
+         cursor-pointer transition-colors hover:bg-white/10;
+}
+
+.code-block pre {
+  @apply m-0 p-4 overflow-x-auto whitespace-pre-wrap break-words;
+}
+
+.code-block code {
+  @apply bg-transparent text-zinc-100 shadow-none not-italic ring-0 p-0 text-sm;
+}
+
+/* ---- Inline doc-section media (screenshot or demo GIF) ---- */
+.doc-section__media {
+  @apply block w-full h-auto rounded-xl border border-zinc-200 dark:border-zinc-800 my-4 mb-8;
+}
+
+/* ---- Callouts (aside variants, matching realm-2025's tip/wip/win/legenda) ---- */
+.callout {
+  @apply rounded-md px-5 py-4 my-5 mb-8 font-body text-base leading-normal;
+}
+
+.callout strong {
+  @apply text-black dark:text-white;
+}
+
+.callout--tip {
+  @apply border border-zinc-200 dark:border-zinc-800 text-black/65 dark:text-white/75;
+}
+
+.callout--wip {
+  @apply text-orange-600 dark:text-orange-200 bg-orange-800/6 dark:bg-orange-800/25;
+}
+
+.callout--wip::before {
+  content: "// ";
+  @apply opacity-60;
+}
+
+.callout--win {
+  @apply border border-teal-300 dark:border-teal-700 bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-100;
+}
+
+.callout--legenda {
+  @apply border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-800/25 text-stone-600 text-sm;
+}
+
+/* ---- Footer ---- */
+.footer {
+  @apply border-t border-zinc-200 dark:border-zinc-800 py-6;
+}
+
+.footer__inner {
+  @apply max-w-[1200px] mx-auto px-12 flex items-center justify-between flex-wrap gap-3;
+}
+
+.footer__copy {
+  @apply font-sans text-sm text-zinc-600 dark:text-zinc-400;
+}
+
+.soft {
+  @apply opacity-40 mx-0.5;
+}
+
+.theme-toggle {
+  @apply flex gap-1;
+}
+
+.theme-toggle__btn {
+  @apply w-8 h-8 flex items-center justify-center rounded-full bg-transparent border-0
+         text-zinc-600 dark:text-zinc-400 cursor-pointer transition-colors
+         hover:text-black dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800;
+}
+
+.theme-toggle__btn[aria-pressed="true"] {
+  @apply text-black dark:text-white bg-zinc-200 dark:bg-zinc-800;
+}
+
+/* ---- Hero ---- */
+.hero {
+  @apply max-w-[720px] mx-auto px-12 max-[859px]:px-6 pt-24 max-[859px]:pt-16 pb-16 max-[859px]:pb-12 text-center;
+}
+
+.hero__title {
+  @apply font-sans text-6xl font-semibold leading-[1.1] tracking-tighter text-black dark:text-white mb-4;
+}
+
+.hero__subtitle {
+  @apply font-body text-lg leading-normal text-black/65 dark:text-white/75 mb-8;
+}
+
+.hero__actions {
+  @apply flex justify-center gap-3 flex-wrap;
+}
+
+/* ---- Buttons ---- */
+.button {
+  @apply inline-flex items-center gap-2 font-sans font-medium text-sm no-underline px-5 py-3
+         rounded-full transition-colors hover:no-underline;
+}
+
+.button--primary {
+  @apply bg-black dark:bg-white text-zinc-50 dark:text-zinc-900 border border-black dark:border-white
+         hover:bg-zinc-600 dark:hover:bg-zinc-400 hover:border-zinc-600 dark:hover:border-zinc-400
+         hover:text-zinc-50 dark:hover:text-zinc-900;
+}
+
+.button--secondary {
+  @apply bg-transparent text-black dark:text-white border border-zinc-200 dark:border-zinc-800
+         hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white
+         hover:bg-zinc-200 dark:hover:bg-zinc-800;
+}
+
+/* ---- Showcase (product screenshot or demo GIF) ---- */
+.showcase {
+  @apply max-w-[1200px] mx-auto px-12 pb-16;
+}
+
+.showcase img {
+  @apply block w-full h-auto rounded-xl border border-zinc-200 dark:border-zinc-800;
+}
+
+/* ---- Features grid ---- */
+.features {
+  @apply max-w-[1200px] mx-auto px-12 py-16;
+}
+
+.features h2 {
+  @apply text-center;
+}
+
+.features-grid {
+  @apply list-none grid grid-cols-3 max-[859px]:grid-cols-1 gap-6 mt-8;
+}
+
+.feature {
+  @apply border border-zinc-200 dark:border-zinc-800 rounded-xl p-6;
+}
+
+.feature h3 {
+  @apply mt-0 mb-2 text-lg;
+}
+
+.feature p {
+  @apply mb-0 text-sm;
+}
+
+/* ---- CTA band ---- */
+.cta {
+  @apply max-w-[1200px] mx-auto px-12 pb-24;
+}
+
+.cta-card {
+  @apply border border-zinc-200 dark:border-zinc-800 rounded-xl p-12 text-center;
+}
+
+.cta-card__banner {
+  @apply block w-full max-w-[320px] aspect-2/1 object-cover rounded-xl mt-8 mx-auto;
+}
+
+.cta-card h2 {
+  @apply mb-3;
+}
+
+.cta-card p {
+  @apply max-w-[480px] mx-auto mb-6;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body,
+  .sidebar {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   Docs content (_docs/*.md, rendered by kramdown, no per-element
+   classes) — styled via the typography plugin. See _layouts/docs.html
+   for the `.prose` wrapper.
+   ============================================================ */
+.prose {
+  --tw-prose-body: #000;
+  --tw-prose-headings: #000;
+  --tw-prose-links: var(--color-zinc-700);
+  --tw-prose-bold: #000;
+  --tw-prose-counters: var(--color-zinc-600);
+  --tw-prose-bullets: var(--color-zinc-300);
+  --tw-prose-hr: var(--color-zinc-200);
+  --tw-prose-th-borders: var(--color-zinc-200);
+  --tw-prose-td-borders: var(--color-zinc-200);
+
+  --tw-prose-invert-body: #fff;
+  --tw-prose-invert-headings: #fff;
+  --tw-prose-invert-links: var(--color-zinc-200);
+  --tw-prose-invert-bold: #fff;
+  --tw-prose-invert-counters: var(--color-zinc-400);
+  --tw-prose-invert-bullets: var(--color-zinc-700);
+  --tw-prose-invert-hr: var(--color-zinc-800);
+  --tw-prose-invert-th-borders: var(--color-zinc-800);
+  --tw-prose-invert-td-borders: var(--color-zinc-800);
+}
+
+.prose :where(a):not(:where([class~="not-prose"] *)) {
+  @apply decoration-amber-400 dark:decoration-amber-600 hover:decoration-amber-600 dark:hover:decoration-amber-300;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)):not(.code-block code) {
+  @apply font-mono italic bg-zinc-100 dark:bg-zinc-800 ring-1 ring-black/6 dark:ring-white/8;
+}
+
+.prose :where(code):not(:where(pre code)):not(:where([class~="not-prose"] *))::before,
+.prose :where(code):not(:where(pre code)):not(:where([class~="not-prose"] *))::after {
+  content: none;
+}
