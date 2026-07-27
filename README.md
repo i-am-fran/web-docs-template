@@ -18,7 +18,7 @@ Built with Jekyll, which GitHub Pages runs for you automatically on every push �
    - **Callouts**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/tailwind-input.css`. Write them as raw HTML with `markdown="1"` so kramdown still processes Markdown inside, and `not-prose` so the Tailwind Typography plugin (which styles the rest of the doc content) doesn't add its own paragraph spacing inside the box: `<aside class="callout callout--tip not-prose" markdown="1">**Tip:** ...</aside>`.
    - **Tables**: plain Markdown tables — no class needed. The Tailwind Typography plugin (`.prose`, applied to all doc content) styles them automatically.
    - **Images with a class** (e.g. the doc-section media slot below): `![alt](assets/demo.gif){: .doc-section__media}`.
-6. **Logo (optional)**: drop a square image at `assets/logo.png`, then uncomment the `<img class="topnav__logo-icon">` line inside `.topnav__logo` in both `_layouts/home.html` and `_layouts/docs.html`. It renders as a circular crop to the left of the title (`.topnav__logo-icon` in `assets/css/style.css`). Left commented out by default because, unlike a missing favicon, a missing `<img src>` shows a visible broken-image icon.
+6. **Logo (optional)**: drop a square image under `assets/` and set `logo: /assets/your-logo.png` in `_config.yml`. It renders as a circular crop to the left of the title in the topnav (`.topnav__logo-icon` in `assets/css/style.css`). Config-driven rather than a line to uncomment in the layouts specifically so a `remote_theme` consumer (which has no local layout files to edit) can still set a logo — see [Using this as a remote theme](#using-this-as-a-remote-theme).
 7. **Favicon / social preview**: both layouts' `<head>` (via `_includes/head.html`) already ship the full set of tags — `theme-color`, Open Graph, Twitter Card, and the six icon `<link>`s (`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` @180×180, `android-chrome-192x192.png`, `android-chrome-512x512.png`), all built from `_config.yml`. Replace the placeholder files under `assets/` with your own set generated from your logo, and set `url`/`baseurl` in `_config.yml` to your real GitHub Pages URL — a project page at `you.github.io/project/` needs `baseurl: "/project"`; a user/org root page or custom domain needs `baseurl: ""`.
 8. **CTA banner (optional)**: the CTA card at the bottom of `index.html` has a commented-out `.cta-card__banner` slot right after the closing card — a small (max 320px), rounded-corner image. Uncomment it and point it at a wide (roughly 2:1) image of your own.
 9. **Showcase (optional)**: a commented-out `.showcase` section sits between the hero and "What you get" on `index.html`, for a full-width product screenshot or demo GIF. Uncomment it and point the `<img>` at your own asset.
@@ -85,6 +85,7 @@ author_label: "iamfran.com"
 repository: "you/your-project"
 url: "https://you.github.io"
 baseurl: "/your-project"
+logo: "/assets/your-logo.png"   # optional — see step 6 in "Using this template" above
 markdown: kramdown
 ```
 

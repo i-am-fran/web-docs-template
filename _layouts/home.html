@@ -4,8 +4,7 @@ layout: base
 <header class="topnav">
   <div class="topnav__inner">
     <a class="topnav__logo" href="{{ '/' | relative_url }}">
-      <!-- Optional logo: drop a square image at assets/logo.png, then uncomment:
-      <img src="{{ '/assets/logo.png' | relative_url }}" alt="" class="topnav__logo-icon"> -->
+      {% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="" class="topnav__logo-icon">{% endif %}
       {{ site.title }}
     </a>
     <nav class="topnav__links" aria-label="Page links">
