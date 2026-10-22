@@ -17,6 +17,7 @@ Built with Jekyll, which GitHub Pages runs for you automatically on every push �
    - **Code blocks**: just use a plain fenced block (` ```bash `). JS automatically wraps it with the copy-button chrome at load time — no manual `<div class="code-block">` markup needed anymore.
    - **Callouts**: `.callout--tip` is used by default; `.callout--wip`, `.callout--win`, and `.callout--legenda` are also defined in `css/tailwind-input.css`. Write them as raw HTML with `markdown="1"` so kramdown still processes Markdown inside, and `not-prose` so the Tailwind Typography plugin (which styles the rest of the doc content) doesn't add its own paragraph spacing inside the box: `<aside class="callout callout--tip not-prose" markdown="1">**Tip:** ...</aside>`.
    - **Accordions** (FAQ-style): `<details class="accordion"><summary>Question?</summary><div class="accordion__body"><p>Answer.</p></div></details>`. See the end of `_docs/guides.md`.
+   - **Buttons**: `<div class="actions"><a class="button button--primary" href="...">Install</a><a class="button" href="...">GitHub</a></div>` (a row of buttons; `button--primary` is the bright one).
    - **Keys and highlights**: `<kbd>⌘</kbd>` renders as a keycap; `<mark>text</mark>` as a yellow highlight. Kramdown has no `==highlight==` syntax.
    - **Footnotes**: kramdown's `[^1]` footnotes get a small "Footnotes" heading and dimmed back-links.
    - **Tables**: plain Markdown tables — no class needed. The Tailwind Typography plugin (`.prose`, applied to all doc content) styles them automatically.

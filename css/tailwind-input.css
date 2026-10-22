@@ -461,6 +461,20 @@ html.js .footer.show {
   @apply block w-full max-w-[480px] h-auto rounded-xl my-6;
 }
 
+/* ---- Buttons (iamfran.com's a.button, plus a brighter primary variant) ---- */
+.actions {
+  @apply flex flex-wrap gap-3 mt-6 mb-4;
+}
+
+.button {
+  @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md no-underline cursor-pointer
+         bg-line text-body transition-colors duration-300 ease-in-out hover:bg-line-active hover:text-heading;
+}
+
+.button--primary {
+  @apply bg-heading text-ink hover:bg-body hover:text-ink;
+}
+
 /* Heading row with a pill link on the right, like iamfran.com's "Notes … See all" */
 .section-head {
   @apply flex flex-wrap items-center justify-between gap-2 mt-14 mb-4;
