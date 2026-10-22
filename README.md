@@ -2,7 +2,7 @@ This is a template for the documentation website of my projects on GitHub.
 
 It's a two-page site: a home page (`index.md`) and a one-page docs layout (`docs.html`). Both share the same shell: a fixed left column (wordmark, links, section nav) next to one centered reading column.
 
-The design follows [pele.run](https://pele.run) (by kepano): the [Flexoki](https://stephango.com/flexoki) dark palette, the system font stack, no top bar. Dark only.
+The layout follows [pele.run](https://pele.run) (by kepano): the [Flexoki](https://stephango.com/flexoki) dark palette, the system font stack, no top bar. Dark only. A few signature details come from my own site, iamfran.com: amber link underlines and an amber rule on the active nav item, "•••" dividers between sections, and small uppercase nav group labels.
 
 Built with Jekyll, which GitHub Pages runs for you automatically on every push — no CI workflow to set up, no Node/npm involved. Docs content is written in Markdown. `bundle exec jekyll serve` gives you a local preview (see [Local preview](#local-preview)) but isn't required — pushing is enough.
 
@@ -54,7 +54,7 @@ Rebuild after any change to `css/tailwind-input.css`:
 ./tailwindcss -i css/tailwind-input.css -o assets/css/style.css
 ```
 
-Design tokens are measured from [pele.run](https://pele.run): the Flexoki dark values live in `@theme` as `--color-ink`, `--color-panel`, `--color-line`, `--color-faint`, `--color-muted`, `--color-body` plus the eight accents (`--color-red` … `--color-magenta`, used only by callouts), so utilities like `bg-panel` and `text-muted` work. Fonts are the system stack (`-apple-system`, Inter, …) and `ui-monospace`, so there's no web-font request. The reading width is `42 × --font-size-body` (about 650px).
+Design tokens are measured from [pele.run](https://pele.run): the Flexoki dark values live in `@theme` as `--color-ink`, `--color-panel`, `--color-line`, `--color-faint`, `--color-muted`, `--color-body` plus the eight accents (`--color-red` … `--color-magenta`, used only by callouts), so utilities like `bg-panel` and `text-muted` work. The amber accent uses Tailwind's built-in `amber-*` colors. On the home page, a Markdown `***` between sections renders as the "•••" divider. Fonts are the system stack (`-apple-system`, Inter, …) and `ui-monospace`, so there's no web-font request. The reading width is `42 × --font-size-body` (about 650px).
 
 Docs content (`_docs/*.md`) has no hand-placed classes, so it's styled via the [Tailwind Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) (bundled in the standalone CLI, zero extra install) — see the `.prose` wrapper in `_layouts/docs.html` and the `--tw-prose-*` overrides at the bottom of `css/tailwind-input.css`. Custom elements the plugin doesn't know about (callouts, the code-block chrome, doc-section media images) opt out via `not-prose` and get their own `@layer components` classes instead — same pattern as `.sidebar`, `.wordmark`, `.footer`, etc.
 

@@ -26,6 +26,8 @@ project-name do-something --with-flag
 
 Placeholder follow-up line describing what the example produces.
 
+***
+
 ## Install {#install}
 
 Placeholder sentence about how to get it.
@@ -33,6 +35,8 @@ Placeholder sentence about how to get it.
 ```bash
 curl -fsSL https://example.com/install.sh | sh
 ```
+
+***
 
 ## Explore {#explore}
 

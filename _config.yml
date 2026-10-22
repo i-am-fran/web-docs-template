@@ -17,6 +17,12 @@ author_label: "iamfran.com"
 url: "https://you.github.io"
 baseurl: "/project"
 
+# GitHub Pages enables jekyll-theme-primer by default, and Primer ships its
+# own assets/css/style.scss — which compiles to the same output path as this
+# template's assets/css/style.css and can overwrite it depending on build
+# order. Turn it off explicitly.
+theme: null
+
 markdown: kramdown
 kramdown:
   auto_ids: true
