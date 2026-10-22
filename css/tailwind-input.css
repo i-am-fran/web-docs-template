@@ -6,9 +6,11 @@
    Layout modeled on pele.run (by kepano): Flexoki dark palette,
    system font stack, a fixed left nav column next to a single
    centered reading column. Dark only — no theme toggle.
-   Signature details carried over from iamfran.com: amber link
-   underlines and active-nav rule, "•••" section dividers,
-   small uppercase nav group labels.
+   Details and components carried over from iamfran.com
+   (realm-2025): bright semibold headings over dimmer body text,
+   amber link underlines, "/" soft separators, "•••" dividers,
+   keycap inline code, arrow cards, back-to-top button, fade-in
+   on load, callout variants, accordions, marks, footnotes.
    ============================================================ */
 
 @import "tailwindcss";
@@ -27,6 +29,7 @@
   --color-faint: #575653;
   --color-muted: #878580;
   --color-body: #cecdc3;
+  --color-heading: #fffcf0;
 
   --color-red: #d14d41;
   --color-orange: #da702c;
@@ -63,13 +66,18 @@ body {
 }
 
 /* ---- Typography (hand-written pages: index.html) ---- */
+/* Headings: brighter and semibold over the dimmer body text, like iamfran.com */
 h1 {
-  @apply text-[2.5rem] font-semibold leading-tight tracking-[-1px] text-body mb-6;
+  @apply text-[2rem] font-semibold leading-tight tracking-tight text-heading mb-6;
 }
 
 h2, h3 {
-  @apply text-xl font-medium leading-snug text-body mt-14 mb-4;
+  @apply text-xl font-semibold leading-snug text-heading mt-14 mb-4;
   scroll-margin-top: 1.5rem;
+}
+
+strong {
+  @apply font-semibold text-heading;
 }
 
 p {
@@ -77,13 +85,35 @@ p {
 }
 
 a {
-  @apply text-body underline decoration-amber-600 underline-offset-[3px] transition-colors
-         hover:decoration-amber-300;
+  @apply text-body font-medium underline decoration-amber-600 underline-offset-2
+         transition-all duration-300 ease-in-out hover:text-heading hover:decoration-amber-300;
 }
 
-/* ---- Inline code ---- */
-code {
-  @apply font-mono text-[0.875rem] bg-panel text-body px-1 py-0.5 rounded-[5px];
+/* External links in running text get a small ↗ arrow (iamfran.com's article a[target=_blank]) */
+.content > p a[target="_blank"],
+.prose a[target="_blank"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='gray'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25' /%3E%3C/svg%3E");
+  background-position: right 33%;
+  background-repeat: no-repeat;
+  background-size: 0.7em;
+  @apply pr-4;
+}
+
+/* ---- Inline code and kbd: keycap look (1px ring + 3px bottom edge) ---- */
+code,
+kbd {
+  @apply font-mono text-[0.875em] bg-panel text-body p-1 rounded-[0.3125rem];
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 10%), 0 3px rgb(255 255 255 / 10%);
+}
+
+/* ---- Highlight ---- */
+mark {
+  @apply px-2 rounded-md text-yellow-200 bg-yellow-800 border-b-4 border-yellow-700;
+}
+
+/* ---- "/" soft separator ---- */
+.soft {
+  @apply opacity-25 mx-0.5;
 }
 
 /* ---- Skip link ---- */
@@ -97,19 +127,20 @@ code {
 
 /* ---- Wordmark + top links (shared by both layouts, _includes/site-nav.html) ---- */
 .wordmark {
-  @apply inline-flex items-center gap-2 text-xl font-bold tracking-[-0.6px] text-body no-underline;
+  @apply inline-flex items-center gap-2 text-lg font-semibold text-heading no-underline;
 }
 
 .wordmark__icon {
-  @apply w-6 h-6 shrink-0 rounded-md object-cover;
+  @apply w-7 h-7 shrink-0 rounded-full object-cover;
 }
 
+/* Inline "Docs / GitHub" row with soft slashes, like iamfran.com's header nav */
 .site-nav__links {
-  @apply list-none mt-5 mb-8;
+  @apply flex flex-wrap items-center gap-x-2 mt-4 mb-8 text-sm;
 }
 
 .site-nav__links a {
-  @apply block py-1 text-sm font-medium text-body no-underline hover:text-body;
+  @apply font-normal text-muted no-underline hover:text-heading;
 }
 
 /* ---- Mobile header (hidden above the mobile breakpoint) ---- */
@@ -206,7 +237,7 @@ code {
 }
 
 .sidebar__link.is-active {
-  @apply text-body font-medium border-amber-600;
+  @apply text-heading font-medium border-amber-600;
 }
 
 /* ---- Code block (chrome added by assets/js/script.js's initCodeBlockChrome) ---- */
@@ -227,17 +258,18 @@ code {
 }
 
 .code-block pre {
-  @apply m-0 px-4 pt-2 pb-4 overflow-x-auto;
+  @apply m-0 px-4 pt-2 pb-4 whitespace-pre-wrap break-words;
   line-height: 1.72;
 }
 
 .code-block code {
   @apply bg-transparent text-body p-0 rounded-none text-[0.875rem];
+  box-shadow: none;
 }
 
 /* ---- Docs page sections: each section title reads like a page title ---- */
 .doc-section > h2 {
-  @apply text-[2.5rem] font-semibold leading-tight tracking-[-1px] mt-0 mb-6;
+  @apply text-[2rem] font-semibold leading-tight tracking-tight mt-0 mb-6;
 }
 
 /* ---- Section divider: centered "•••", no visible line (from iamfran.com) ---- */
@@ -249,7 +281,7 @@ code {
 .divider::before,
 .content > hr::before {
   content: "\2022\2022\2022";
-  @apply inline-block tracking-[1rem] text-sm text-muted opacity-60;
+  @apply inline-block tracking-[1rem] text-sm text-body opacity-25;
 }
 
 .content > hr + h2 {
@@ -258,66 +290,150 @@ code {
 
 /* ---- Inline doc-section media (screenshot or demo GIF) ---- */
 .doc-section__media {
-  @apply block w-full h-auto rounded-xl my-6;
+  @apply block w-full h-auto rounded-lg shadow-md my-6;
 }
 
-/* ---- Callouts ---- */
+/* ---- Callouts (aside variants from iamfran.com: tip / wip / win / legenda) ---- */
 .callout {
-  @apply rounded-xl bg-panel px-5 py-4 my-6 text-[0.9375rem] leading-normal;
+  @apply rounded-md px-6 py-4 my-6 text-[0.9375rem] leading-normal;
 }
 
-.callout strong {
-  @apply text-body font-semibold;
+.callout > :last-child {
+  @apply mb-0;
 }
 
 .callout--tip {
-  @apply text-body;
-}
-
-.callout--tip strong {
-  @apply text-amber-400;
+  @apply border border-line;
 }
 
 .callout--wip {
-  @apply text-orange;
+  @apply px-4 text-orange-200 bg-orange-800/25;
 }
 
-.callout--wip strong {
-  @apply text-orange;
+/* Floated so the prefix sits inline with the first line of the <p> kramdown wraps the text in */
+.callout--wip::before {
+  content: "//";
+  @apply float-left mr-[0.35em] text-orange-500;
 }
 
 .callout--win {
-  @apply text-green;
+  @apply border border-teal-700 bg-teal-900 text-teal-100;
 }
 
 .callout--win strong {
-  @apply text-green;
+  @apply text-teal-50;
+}
+
+.callout--win a {
+  @apply text-teal-200 decoration-teal-300;
 }
 
 .callout--legenda {
-  @apply bg-transparent border border-line text-muted text-sm;
+  @apply px-4 text-sm text-stone-200 bg-stone-800/25 border border-stone-800;
 }
 
-/* ---- Footer ---- */
+.callout--legenda::before {
+  content: "// Legenda";
+  @apply float-left mr-[0.35em] text-stone-300;
+}
+
+/* ---- Accordion (<details class="accordion">, from iamfran.com's Accordion) ---- */
+.accordion {
+  @apply my-4 overflow-hidden rounded-lg border border-line;
+}
+
+.accordion summary {
+  @apply flex items-center justify-between gap-2 p-4 font-medium text-heading cursor-pointer list-none
+         transition-colors duration-300 ease-in-out hover:bg-panel;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary::after {
+  content: "";
+  @apply size-5 shrink-0 transition-transform duration-300 ease-in-out;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23878580' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.accordion[open] summary::after {
+  @apply rotate-180;
+}
+
+.accordion__body {
+  @apply px-4 pb-4 text-body;
+}
+
+.accordion__body > :last-child {
+  @apply mb-0;
+}
+
+/* ---- Footer: "© 2026 / Name / author" + back-to-top, like iamfran.com ---- */
 .footer {
-  @apply mx-auto mt-16 pt-6 pb-16 border-t border-line flex items-center justify-between flex-wrap gap-3
-         text-sm text-muted max-[859px]:mx-4;
+  @apply mx-auto mt-16 py-6 flex items-center justify-between flex-wrap gap-3 text-sm text-muted max-[859px]:mx-4;
   max-width: var(--reading);
 }
 
 @media (min-width: 860px) and (max-width: 1199px) {
   .footer {
-    margin-left: calc(var(--nav-width) + 4rem);
-    margin-right: 1.5rem;
+    /* .content sits inside .shell's 1.5rem padding; the footer doesn't */
+    margin-left: calc(var(--nav-width) + 4rem + 1.5rem);
+    margin-right: 3rem;
   }
 }
 
-.footer__links {
-  @apply list-none flex gap-5;
+.footer a {
+  @apply font-normal text-muted no-underline hover:text-heading;
 }
 
-.footer a {
-  @apply text-muted no-underline hover:text-body;
+/* ---- Animated arrow icon, shared by .arrow-card and .back-to-top ---- */
+.arrow-icon {
+  @apply size-5 fill-none stroke-current stroke-2;
+}
+
+.arrow-icon line,
+.arrow-icon polyline {
+  @apply transition-transform duration-300 ease-in-out;
+}
+
+/* ---- Back to top (from iamfran.com's BackToTop) ---- */
+.back-to-top {
+  @apply relative flex items-center pl-8 pr-3 py-1.5 rounded border border-white/20 bg-transparent text-sm text-muted
+         cursor-pointer opacity-0 pointer-events-none
+         transition-all duration-300 ease-in-out hover:bg-white/5 hover:text-heading;
+}
+
+html.scrolled .back-to-top {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.back-to-top .arrow-icon {
+  @apply absolute top-1/2 left-2 -translate-y-1/2 size-4 -rotate-90;
+}
+
+.back-to-top .arrow-icon line {
+  transform: translateX(0.5rem) scaleX(0);
+}
+
+.back-to-top .arrow-icon polyline {
+  transform: translateX(-0.25rem);
+}
+
+.back-to-top:hover .arrow-icon line,
+.back-to-top:hover .arrow-icon polyline {
+  transform: none;
+}
+
+/* ---- Fade-in on load (iamfran.com's .animate/.show), driven by script.js ---- */
+html.js .content > *,
+html.js .footer {
+  @apply opacity-0 translate-y-3 transition-all duration-700 ease-out;
+}
+
+html.js .content > .show,
+html.js .footer.show {
+  @apply opacity-100 translate-y-0;
 }
 
 /* ---- Home page ---- */
@@ -333,34 +449,77 @@ code {
   @apply block w-full max-w-[480px] h-auto rounded-xl my-6;
 }
 
-.link-grid {
-  @apply list-none grid grid-cols-2 max-[600px]:grid-cols-1 gap-x-8 gap-y-6 mt-6;
+/* Heading row with a pill link on the right, like iamfran.com's "Notes … See all" */
+.section-head {
+  @apply flex flex-wrap items-center justify-between gap-2 mt-14 mb-4;
 }
 
-.link-grid a {
-  @apply block no-underline;
+.content > hr + .section-head {
+  @apply mt-0;
 }
 
-.link-grid__title {
-  @apply block font-medium text-body underline decoration-amber-600 underline-offset-[3px];
+.section-head h2 {
+  @apply m-0;
 }
 
-.link-grid a:hover .link-grid__title {
-  @apply decoration-amber-300;
+.pill {
+  @apply inline-block px-2 text-sm font-normal rounded-lg bg-panel text-body no-underline
+         transition-colors duration-300 ease-in-out hover:bg-line-active hover:text-heading;
 }
 
-.link-grid__desc {
-  @apply block text-[0.9375rem] text-muted mt-1;
+/* ---- Arrow cards (from iamfran.com's ArrowCard) ---- */
+.arrow-list {
+  @apply list-none flex flex-col gap-4;
+}
+
+.arrow-card {
+  @apply relative flex flex-nowrap py-3 px-0 pr-10 rounded-xl font-normal text-body no-underline
+         transition-all duration-300 ease-in-out hover:px-4 hover:pr-10 hover:bg-white/5 hover:text-heading;
+}
+
+.arrow-card__text {
+  @apply flex flex-col flex-1 min-w-0;
+}
+
+.arrow-card__title {
+  @apply leading-6 truncate;
+}
+
+.arrow-card__desc {
+  @apply text-sm truncate opacity-50;
+}
+
+.arrow-card .arrow-icon {
+  @apply absolute top-1/2 right-2 -translate-y-1/2;
+}
+
+.arrow-card .arrow-icon line {
+  transform: translateX(0.75rem) scaleX(0);
+}
+
+.arrow-card .arrow-icon polyline {
+  transform: translateX(-0.25rem);
+}
+
+.arrow-card:hover .arrow-icon line,
+.arrow-card:hover .arrow-icon polyline {
+  transform: none;
 }
 
 /* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .sidebar {
-    transition: none;
+  html.js .content > *,
+  html.js .footer {
+    @apply opacity-100 translate-y-0;
   }
 }
 
@@ -371,9 +530,9 @@ code {
    ============================================================ */
 .prose {
   --tw-prose-body: var(--color-body);
-  --tw-prose-headings: var(--color-body);
+  --tw-prose-headings: var(--color-heading);
   --tw-prose-links: var(--color-body);
-  --tw-prose-bold: var(--color-body);
+  --tw-prose-bold: var(--color-heading);
   --tw-prose-counters: var(--color-muted);
   --tw-prose-bullets: var(--color-faint);
   --tw-prose-hr: var(--color-line);
@@ -387,11 +546,11 @@ code {
 }
 
 .prose :where(h3):not(:where([class~="not-prose"] *)) {
-  @apply text-xl font-medium mt-14 mb-4;
+  @apply text-xl font-semibold mt-14 mb-4;
 }
 
 .prose :where(a):not(:where([class~="not-prose"] *)) {
-  @apply font-normal decoration-amber-600 underline-offset-[3px] hover:decoration-amber-300;
+  @apply font-medium decoration-amber-600 underline-offset-2 transition-all duration-300 hover:text-heading hover:decoration-amber-300;
 }
 
 .prose :where(th):not(:where([class~="not-prose"] *)) {
@@ -403,7 +562,45 @@ code {
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)):not(.code-block code) {
-  @apply font-mono font-normal bg-panel px-1 py-0.5 rounded-[5px];
+  @apply font-mono font-normal bg-panel p-1 rounded-[0.3125rem];
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 10%), 0 3px rgb(255 255 255 / 10%);
+}
+
+/* Images: rounded + shadow; images on consecutive lines become a grid */
+.prose :where(img):not(:where([class~="not-prose"] *)) {
+  @apply rounded-lg shadow-md;
+}
+
+.prose p:has(> img + img) {
+  @apply grid gap-3;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.prose p:has(> img + img) img {
+  @apply m-0 w-full h-full object-cover;
+}
+
+.prose del {
+  @apply opacity-50;
+}
+
+/* Footnotes (kramdown renders div.footnotes + sup/a.reversefootnote) */
+.prose .footnotes {
+  @apply mt-12 text-sm;
+}
+
+.prose .footnotes::before {
+  content: "Footnotes";
+  @apply text-sm font-semibold text-heading;
+}
+
+.prose .footnotes hr {
+  @apply hidden;
+}
+
+.prose sup a,
+.prose .reversefootnote {
+  @apply no-underline opacity-50 hover:opacity-100;
 }
 
 .prose :where(code):not(:where(pre code)):not(:where([class~="not-prose"] *))::before,

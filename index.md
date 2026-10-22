@@ -38,11 +38,14 @@ curl -fsSL https://example.com/install.sh | sh
 
 ***
 
-## Explore {#explore}
+<div class="section-head">
+  <h2 id="explore">Explore</h2>
+  <a class="pill" href="{{ '/docs.html' | relative_url }}">All docs</a>
+</div>
 
-<ul class="link-grid">
-  <li><a href="{{ '/docs.html#getting-started' | relative_url }}"><span class="link-grid__title">Getting Started</span><span class="link-grid__desc">Install and run it for the first time.</span></a></li>
-  <li><a href="{{ '/docs.html#guides' | relative_url }}"><span class="link-grid__title">Guides</span><span class="link-grid__desc">Common and advanced usage patterns.</span></a></li>
-  <li><a href="{{ '/docs.html#api-reference' | relative_url }}"><span class="link-grid__title">API Reference</span><span class="link-grid__desc">Endpoints, parameters and error codes.</span></a></li>
-  <li><a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer"><span class="link-grid__title">GitHub</span><span class="link-grid__desc">Source code, issues and releases.</span></a></li>
+<ul class="arrow-list">
+  <li><a class="arrow-card" href="{{ '/docs.html#getting-started' | relative_url }}"><span class="arrow-card__text"><span class="arrow-card__title">Getting Started</span><span class="arrow-card__desc">Install and run it for the first time.</span></span>{% include arrow-icon.html %}</a></li>
+  <li><a class="arrow-card" href="{{ '/docs.html#guides' | relative_url }}"><span class="arrow-card__text"><span class="arrow-card__title">Guides</span><span class="arrow-card__desc">Common and advanced usage patterns.</span></span>{% include arrow-icon.html %}</a></li>
+  <li><a class="arrow-card" href="{{ '/docs.html#api-reference' | relative_url }}"><span class="arrow-card__text"><span class="arrow-card__title">API Reference</span><span class="arrow-card__desc">Endpoints, parameters and error codes.</span></span>{% include arrow-icon.html %}</a></li>
+  <li><a class="arrow-card" href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer"><span class="arrow-card__text"><span class="arrow-card__title">GitHub</span><span class="arrow-card__desc">Source code, issues and releases.</span></span>{% include arrow-icon.html %}</a></li>
 </ul>

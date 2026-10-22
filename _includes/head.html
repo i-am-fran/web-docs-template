@@ -32,4 +32,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/android-chrome-192x192.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/android-chrome-512x512.png' | relative_url }}">
 
+<!-- Marks JS as available before first paint, so the fade-in (html.js in style.css)
+     can start hidden without hiding content when JS is off. -->
+<script>document.documentElement.classList.add("js");</script>
+
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">

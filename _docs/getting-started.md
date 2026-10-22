@@ -33,9 +33,13 @@ Placeholder prose walking through the first steps after installation.
 **Tip:** Placeholder callout text goes here — use this box for tips, warnings, or important asides.
 </aside>
 
+<aside class="callout callout--wip not-prose" markdown="1">
+Placeholder work-in-progress note — this part of the project is still changing.
+</aside>
+
 ### Configuration {#configuration}
 
-Placeholder prose describing configuration options.
+Placeholder prose describing configuration options. Press <kbd>⌘</kbd> <kbd>K</kbd> to <mark>search</mark> — placeholder.
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |

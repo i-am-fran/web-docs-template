@@ -193,12 +193,42 @@
     });
   }
 
+  // Fade content in on load, a little staggered (iamfran.com's .animate/.show).
+  // The hidden starting state only applies under html.js, set in <head>.
+  function initFadeIn() {
+    var elements = document.querySelectorAll(".content > *, .footer");
+    elements.forEach(function (element, index) {
+      setTimeout(function () {
+        element.classList.add("show");
+      }, Math.min(index, 6) * 120);
+    });
+  }
+
+  // Back-to-top button: shown once the page has scrolled a bit.
+  function initBackToTop() {
+    var button = document.getElementById("backToTop");
+    if (!button) return;
+
+    function onScroll() {
+      document.documentElement.classList.toggle("scrolled", window.scrollY > 400);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    button.addEventListener("click", function () {
+      window.scrollTo({ top: 0 });
+    });
+  }
+
   function init() {
     initSidebarToggle();
     initSidebarDismissal();
     initScrollSpy();
     initCodeBlockChrome();
     initCodeCopyButtons();
+    initFadeIn();
+    initBackToTop();
   }
 
   document.addEventListener("DOMContentLoaded", init);

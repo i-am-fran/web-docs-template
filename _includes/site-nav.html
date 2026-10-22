@@ -2,7 +2,8 @@
   {% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="" class="wordmark__icon">{% endif %}
   {{ site.title }}
 </a>
-<ul class="site-nav__links">
-  <li><a href="{{ '/docs.html' | relative_url }}">Docs</a></li>
-  <li><a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-</ul>
+<nav class="site-nav__links" aria-label="Site">
+  <a href="{{ '/docs.html' | relative_url }}">Docs</a>
+  <span class="soft">/</span>
+  <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+</nav>
