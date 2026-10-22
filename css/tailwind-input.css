@@ -461,18 +461,49 @@ html.js .footer.show {
   @apply block w-full max-w-[480px] h-auto rounded-xl my-6;
 }
 
-/* ---- Buttons (iamfran.com's a.button, plus a brighter primary variant) ---- */
+/* ---- Buttons (shape from iamfran.com's a.button) ---- */
 .actions {
-  @apply flex flex-wrap gap-3 mt-6 mb-4;
+  @apply flex flex-wrap items-center gap-3 mt-6 mb-4;
 }
 
+/* Secondary: outlined, like the back-to-top button */
 .button {
-  @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md no-underline cursor-pointer
-         bg-line text-body transition-colors duration-300 ease-in-out hover:bg-line-active hover:text-heading;
+  @apply relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md no-underline cursor-pointer
+         border border-white/20 bg-transparent text-body
+         transition-all duration-300 ease-in-out hover:bg-white/5 hover:text-heading;
 }
 
+/* Primary: the amber accent, with a soft glow and a slight lift on hover */
 .button--primary {
-  @apply bg-heading text-ink hover:bg-body hover:text-ink;
+  @apply px-5 py-2.5 font-semibold border-amber-400 bg-amber-500 text-zinc-950
+         hover:bg-amber-400 hover:text-zinc-950 hover:-translate-y-px;
+  box-shadow: 0 0 0 1px rgb(245 158 11 / 0.25), 0 6px 24px -6px rgb(245 158 11 / 0.55);
+}
+
+.button--primary:hover {
+  box-shadow: 0 0 0 1px rgb(251 191 36 / 0.4), 0 10px 32px -6px rgb(251 191 36 / 0.65);
+}
+
+.button--primary:active {
+  @apply translate-y-0;
+}
+
+/* Optional trailing arrow ({% include arrow-icon.html %}), animated like the arrow cards */
+.button .arrow-icon {
+  @apply size-4 -mr-1;
+}
+
+.button .arrow-icon line {
+  transform: translateX(0.75rem) scaleX(0);
+}
+
+.button .arrow-icon polyline {
+  transform: translateX(-0.25rem);
+}
+
+.button:hover .arrow-icon line,
+.button:hover .arrow-icon polyline {
+  transform: none;
 }
 
 /* Heading row with a pill link on the right, like iamfran.com's "Notes … See all" */
