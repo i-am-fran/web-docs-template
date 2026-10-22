@@ -1,20 +1,28 @@
 ---
 layout: base
 ---
-<header class="topnav">
-  <div class="topnav__inner">
-    <a class="topnav__logo" href="{{ '/' | relative_url }}">
-      {% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="" class="topnav__logo-icon">{% endif %}
-      {{ site.title }}
-    </a>
-    <nav class="topnav__links" aria-label="Page links">
-      <a href="{{ '/docs.html' | relative_url }}">Docs</a>
-      <span class="soft">/</span>
-      <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </nav>
-  </div>
-</header>
+{% include mobile-header.html %}
 
-<main id="main-content" tabindex="-1">
-  {{ content }}
-</main>
+<div class="shell">
+  <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+  <aside class="sidebar" id="sidebar">
+    {% include site-nav.html %}
+    {% if page.sections %}
+    <nav class="sidebar__nav" aria-label="On this page">
+      <div class="sidebar__group">
+        <span class="sidebar__group-label">Introduction</span>
+        <ul class="sidebar__list">
+          {% for section in page.sections %}
+          <li><a class="sidebar__link" href="#{{ section.id }}" data-heading="{{ section.id }}">{{ section.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+    {% endif %}
+  </aside>
+
+  <main class="content" id="main-content" tabindex="-1">
+    {{ content }}
+  </main>
+</div>

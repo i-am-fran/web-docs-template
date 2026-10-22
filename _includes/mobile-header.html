@@ -1,0 +1,13 @@
+<header class="mobile-header">
+  <a class="wordmark" href="{{ '/' | relative_url }}">
+    {% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="" class="wordmark__icon">{% endif %}
+    {{ site.title }}
+  </a>
+  <button class="sidebar-toggle" id="sidebarToggle" type="button"
+          aria-expanded="false" aria-controls="sidebar"
+          aria-label="Toggle navigation menu">
+    <span class="sidebar-toggle__bar"></span>
+    <span class="sidebar-toggle__bar"></span>
+    <span class="sidebar-toggle__bar"></span>
+  </button>
+</header>

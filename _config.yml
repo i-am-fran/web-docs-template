@@ -25,7 +25,7 @@ kramdown:
 # (verified locally), so it's not attempted. Since no Rouge theme stylesheet
 # is included, the extra token <span>s it adds render in plain inherited
 # text color anyway — visually identical to the old hand-written markup.
-# See js/script.js's initCodeBlockChrome() for how the resulting
+# See assets/js/script.js's initCodeBlockChrome() for how the resulting
 # .highlighter-rouge markup gets unwrapped into the .code-block chrome.
 
 collections:

@@ -52,13 +52,6 @@
     });
   }
 
-  function setActiveSection(sectionId) {
-    var panels = document.querySelectorAll(".toc__panel");
-    panels.forEach(function (panel) {
-      panel.hidden = panel.getAttribute("data-toc-panel") !== sectionId;
-    });
-  }
-
   function setActiveHeading(headingId) {
     var activeLinks = document.querySelectorAll(".is-active");
     activeLinks.forEach(function (link) {
@@ -69,14 +62,10 @@
     var sidebarLink = document.querySelector(
       '.sidebar__link[data-heading="' + headingId + '"]'
     );
-    var tocLink = document.querySelector('.toc__link[href="#' + headingId + '"]');
-
-    [sidebarLink, tocLink].forEach(function (link) {
-      if (link) {
-        link.classList.add("is-active");
-        link.setAttribute("aria-current", "location");
-      }
-    });
+    if (sidebarLink) {
+      sidebarLink.classList.add("is-active");
+      sidebarLink.setAttribute("aria-current", "location");
+    }
   }
 
   // Standard scrollspy technique: track which observed elements are
@@ -104,7 +93,7 @@
           }
         }
       },
-      { rootMargin: "-64px 0px -60% 0px", threshold: 0 }
+      { rootMargin: "-16px 0px -60% 0px", threshold: 0 }
     );
 
     elementList.forEach(function (element) {
@@ -113,12 +102,14 @@
   }
 
   function initScrollSpy() {
-    var sections = document.querySelectorAll(".doc-section[data-section]");
-    createSpy(sections, function (section) {
-      setActiveSection(section.id);
-    });
-
-    var headings = document.querySelectorAll("main h3[id]");
+    // Only headings that have a sidebar link — the docs page's ### headings,
+    // or the home page's ## sections.
+    var headings = Array.prototype.filter.call(
+      document.querySelectorAll("main h2[id], main h3[id]"),
+      function (heading) {
+        return document.querySelector('.sidebar__link[data-heading="' + heading.id + '"]');
+      }
+    );
     createSpy(headings, function (heading) {
       setActiveHeading(heading.id);
     });
@@ -134,7 +125,7 @@
   // so the token <span>s Rouge adds render in plain inherited text color —
   // visually identical to the old hand-written markup.
   function initCodeBlockChrome() {
-    var rougeBlocks = document.querySelectorAll(".doc-section div.highlighter-rouge");
+    var rougeBlocks = document.querySelectorAll("main div.highlighter-rouge");
     var counter = 0;
 
     rougeBlocks.forEach(function (rougeDiv) {
@@ -202,60 +193,12 @@
     });
   }
 
-  function toggleTheme(isDark) {
-    document.documentElement.classList.toggle("dark", isDark);
-    var buttons = {
-      light: document.getElementById("light-theme-button"),
-      dark: document.getElementById("dark-theme-button"),
-      system: document.getElementById("system-theme-button")
-    };
-    var active = localStorage.getItem("theme") || "system";
-    Object.keys(buttons).forEach(function (key) {
-      if (buttons[key]) {
-        buttons[key].setAttribute("aria-pressed", String(key === active));
-      }
-    });
-  }
-
-  function initThemeToggle() {
-    var lightBtn = document.getElementById("light-theme-button");
-    var darkBtn = document.getElementById("dark-theme-button");
-    var systemBtn = document.getElementById("system-theme-button");
-
-    if (!lightBtn || !darkBtn || !systemBtn) return;
-
-    // Reflect whatever the inline pre-paint script in <head> already decided.
-    toggleTheme(document.documentElement.classList.contains("dark"));
-
-    lightBtn.addEventListener("click", function () {
-      localStorage.setItem("theme", "light");
-      toggleTheme(false);
-    });
-
-    darkBtn.addEventListener("click", function () {
-      localStorage.setItem("theme", "dark");
-      toggleTheme(true);
-    });
-
-    systemBtn.addEventListener("click", function () {
-      localStorage.setItem("theme", "system");
-      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    });
-
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
-      if ((localStorage.getItem("theme") || "system") === "system") {
-        toggleTheme(event.matches);
-      }
-    });
-  }
-
   function init() {
     initSidebarToggle();
     initSidebarDismissal();
     initScrollSpy();
     initCodeBlockChrome();
     initCodeCopyButtons();
-    initThemeToggle();
   }
 
   document.addEventListener("DOMContentLoaded", init);
