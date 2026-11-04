@@ -1,5 +1,6 @@
 <footer class="footer">
-  <div>
+  <div class="footer__credits">
+    {% if site.logo %}<img src="{{ site.logo | relative_url }}" alt="" class="footer__icon">{% endif %}
     &copy; {{ site.time | date: '%Y' }} <span class="soft">/</span>
     <a href="{{ '/' | relative_url }}">{{ site.title }}</a> <span class="soft">/</span>
     <a href="{{ site.author_url }}" target="_blank" rel="noopener noreferrer">{{ site.author_label }}</a>

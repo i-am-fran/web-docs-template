@@ -1259,6 +1259,21 @@ mark {
     }
   }
 }
+.footer__credits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: calc(var(--spacing) * 1.5);
+  row-gap: var(--spacing);
+}
+.footer__icon {
+  margin-right: var(--spacing);
+  height: calc(var(--spacing) * 5);
+  width: calc(var(--spacing) * 5);
+  flex-shrink: 0;
+  border-radius: calc(infinity * 1px);
+  object-fit: cover;
+}
 .arrow-icon {
   width: calc(var(--spacing) * 5);
   height: calc(var(--spacing) * 5);

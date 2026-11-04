@@ -397,6 +397,15 @@ mark {
   @apply font-normal text-muted no-underline hover:text-heading;
 }
 
+/* The logo (when `logo` is set) sits before the credits, smaller than the wordmark's */
+.footer__credits {
+  @apply flex items-center flex-wrap gap-x-1.5 gap-y-1;
+}
+
+.footer__icon {
+  @apply w-5 h-5 shrink-0 rounded-full object-cover mr-1;
+}
+
 /* ---- Animated arrow icon, shared by .arrow-card and .back-to-top ---- */
 .arrow-icon {
   @apply size-5 fill-none stroke-current stroke-2;
