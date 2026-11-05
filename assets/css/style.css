@@ -48,7 +48,6 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --blur-md: 12px;
     --default-transition-duration: 150ms;
@@ -63,8 +62,6 @@
     --color-muted: #878580;
     --color-body: #cecdc3;
     --color-heading: #fffcf0;
-    --color-red: #d14d41;
-    --color-magenta: #ce5d97;
   }
 }
 @layer base {
@@ -640,20 +637,11 @@
   .hidden {
     display: none;
   }
-  .inline {
-    display: inline;
-  }
   .max-w-none {
     max-width: none;
   }
   .rounded {
     border-radius: 0.25rem;
-  }
-  .bg-panel {
-    background-color: var(--color-panel);
-  }
-  .text-muted {
-    color: var(--color-muted);
   }
 }
 :root {
