@@ -32,4 +32,26 @@
 <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/android-chrome-192x192.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/android-chrome-512x512.png' | relative_url }}">
 
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<!-- Load the stylesheet without blocking the first paint.
+     A normal <link rel="stylesheet"> makes the browser show nothing until
+     style.css has arrived, and a link opened in a new tab sits on a white
+     tab for that time. Instead, the page paints straight away with just the
+     dark background below, content hidden, and style.css loads alongside
+     (media="print" doesn't block; stylesLoaded() then switches it on). When
+     it arrives, style.css shows the body and the entrance animation
+     plays. Without JavaScript, the <noscript> link loads it the usual way. -->
+<style>
+  html { background: #100f0f; }
+  body { visibility: hidden; }
+</style>
+<script>
+  function stylesLoaded(link) {
+    link.media = "all";
+    // A link to a section (docs.html#quick-start) jumps to it before the
+    // styles arrive. Once the layout has changed, jump there again.
+    var target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView({ behavior: "instant" });
+  }
+</script>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" media="print" onload="stylesLoaded(this)">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}"></noscript>
