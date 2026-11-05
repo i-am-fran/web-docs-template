@@ -193,17 +193,6 @@
     });
   }
 
-  // Fade content in on load, a little staggered (iamfran.com's .animate/.show).
-  // The hidden starting state only applies under html.js, set in <head>.
-  function initFadeIn() {
-    var elements = document.querySelectorAll(".content > *, .footer");
-    elements.forEach(function (element, index) {
-      setTimeout(function () {
-        element.classList.add("show");
-      }, Math.min(index, 6) * 120);
-    });
-  }
-
   // Back-to-top button: shown once the page has scrolled a bit.
   function initBackToTop() {
     var button = document.getElementById("backToTop");
@@ -227,7 +216,6 @@
     initScrollSpy();
     initCodeBlockChrome();
     initCodeCopyButtons();
-    initFadeIn();
     initBackToTop();
   }
 

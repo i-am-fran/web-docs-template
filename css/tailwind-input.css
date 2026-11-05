@@ -444,16 +444,44 @@ html.scrolled .back-to-top {
   transform: none;
 }
 
-/* ---- Fade-in on load (iamfran.com's .animate/.show), driven by script.js ---- */
-html.js .content > *,
-html.js .footer {
-  @apply opacity-0 translate-y-3 transition-all duration-700 ease-out;
+/* ---- Entrance animation on load ----
+   Pure CSS, so it starts on the very first paint together with the
+   stylesheet — no waiting for script.js, which is what used to leave a
+   moment with the nav visible and the content still blank. The nav fades
+   in; each content block rises from slightly below while fading in, one
+   after another. `both` keeps each block hidden until its delay is up. */
+:root {
+  /* easeOutQuint: quick start, long gentle settle */
+  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-html.js .content > .show,
-html.js .footer.show {
-  @apply opacity-100 translate-y-0;
+@keyframes fade-in {
+  from { opacity: 0; }
 }
+
+@keyframes rise-in {
+  from { opacity: 0; translate: 0 0.75rem; }
+}
+
+.mobile-header,
+.sidebar {
+  animation: fade-in 500ms var(--ease-entrance) both;
+}
+
+.content > *,
+.footer {
+  animation: rise-in 800ms var(--ease-entrance) both;
+  animation-delay: 100ms;
+}
+
+/* Stagger the first few blocks; everything after that comes in together
+   (anything that far down is usually below the fold anyway). */
+.content > :nth-child(2) { animation-delay: 170ms; }
+.content > :nth-child(3) { animation-delay: 240ms; }
+.content > :nth-child(4) { animation-delay: 310ms; }
+.content > :nth-child(5) { animation-delay: 380ms; }
+.content > :nth-child(n + 6),
+.footer { animation-delay: 450ms; }
 
 /* ---- Home page ---- */
 .home-logo {
@@ -583,9 +611,13 @@ html.js .footer.show {
     scroll-behavior: auto !important;
   }
 
-  html.js .content > *,
-  html.js .footer {
-    @apply opacity-100 translate-y-0;
+  /* The rule above shortens durations but not delays, so turn the
+     entrance animation off outright: content just appears. */
+  .mobile-header,
+  .sidebar,
+  .content > *,
+  .footer {
+    animation: none;
   }
 }
 
