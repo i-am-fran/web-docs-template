@@ -24,13 +24,16 @@
 <meta name="twitter:image" content="{{ page_image }}">
 <meta name="twitter:image:alt" content="{{ site.title }} logo">
 
-<!-- Favicon (replace the files under assets/ with your own set) -->
-<link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/android-chrome-192x192.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/android-chrome-512x512.png' | relative_url }}">
+<!-- Favicon (replace the files under assets/ with your own set).
+     Safari keeps a site's tab icon, or the lack of one, for a long time.
+     After changing the icons, bump favicon_v so browsers fetch them again. -->
+{% assign favicon_v = "?v=2" %}
+<link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}{{ favicon_v }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}{{ favicon_v }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}{{ favicon_v }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}{{ favicon_v }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/android-chrome-192x192.png' | relative_url }}{{ favicon_v }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/android-chrome-512x512.png' | relative_url }}{{ favicon_v }}">
 
 <!-- Load the stylesheet without blocking the first paint.
      A normal <link rel="stylesheet"> makes the browser show nothing until
