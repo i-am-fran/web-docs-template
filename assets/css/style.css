@@ -1380,6 +1380,9 @@ html.scrolled .back-to-top {
 .content > :nth-child(n + 6), .footer {
   animation-delay: 450ms;
 }
+.entered .mobile-header, .entered .sidebar, .entered .content > *, .entered .footer {
+  animation: none;
+}
 .home-logo {
   margin-bottom: calc(var(--spacing) * 8);
   display: block;

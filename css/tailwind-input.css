@@ -485,6 +485,15 @@ html.scrolled .back-to-top {
 .content > :nth-child(n + 6),
 .footer { animation-delay: 450ms; }
 
+/* Only the first page of a visit animates in (head.html sets .entered on
+   later ones), so moving around the site doesn't replay it each time. */
+.entered .mobile-header,
+.entered .sidebar,
+.entered .content > *,
+.entered .footer {
+  animation: none;
+}
+
 /* ---- Home page ---- */
 .home-logo {
   @apply block w-[92px] h-[92px] rounded-2xl object-cover mb-8;

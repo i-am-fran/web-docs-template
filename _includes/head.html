@@ -45,6 +45,14 @@
   body { visibility: hidden; }
 </style>
 <script>
+  // Play the entrance animation once per tab. Every later page (clicking
+  // Docs, going back home, a reload) shows straight away instead of
+  // fading in from blank again. sessionStorage throws in some private modes.
+  try {
+    if (sessionStorage.getItem("entered")) document.documentElement.classList.add("entered");
+    else sessionStorage.setItem("entered", "1");
+  } catch (e) {}
+
   function stylesLoaded(link) {
     link.media = "all";
     // A link to a section (docs.html#quick-start) jumps to it before the
